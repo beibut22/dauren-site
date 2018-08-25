@@ -1,0 +1,31 @@
+variables:
+  CONTAINER_IMAGE: registry.gitlab.com/sassoftinc/fil.sassoft
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+stages:
+- build
+- deploy
+
+build:
+  stage: build
+  image: docker:stable
+  services:
+  - docker:dind
+  script:
+  - ./docker/build.sh
+
+deploy:
+  image: sassoftinc/24obmen
+  when: manual
+  stage: deploy
+  only:
+  - master
+  script:
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - ssh-keyscan $TARGET_HOST >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+  - ./docker/deploy.sh

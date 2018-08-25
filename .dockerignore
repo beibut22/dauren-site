@@ -1,0 +1,14 @@
+runtime/cache/*
+runtime/debug/*
+runtime/.gitignore
+tests
+web/uploads
+.gitignore
+codeception.yml
+docker-compose.yml
+Dockerfile
+Makefile
+README.md
+requirements.php
+.git
+.idea
