@@ -10,7 +10,7 @@ ssh root@$TARGET_HOST "docker stop 1biz || true"
 ssh root@$TARGET_HOST "docker rm 1biz || true"
 ssh root@$TARGET_HOST "docker rmi registry.gitlab.com/sassoftinc/1biz:current || true"
 ssh root@$TARGET_HOST "docker tag registry.gitlab.com/sassoftinc/1biz:latest registry.gitlab.com/sassoftinc/1biz:current"
-ssh root@$TARGET_HOST "docker run --name 1biz --restart always -d -p 3005:80 \
+ssh root@$TARGET_HOST "docker run --name 1biz --restart always -d -p 3006:80 \
 -e VIRTUAL_HOST=1biz.kz \
 -e LETSENCRYPT_HOST=1biz.kz \
 -e LETSENCRYPT_EMAIL=sassoftinc@gmail.com \
