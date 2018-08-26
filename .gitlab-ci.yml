@@ -4,28 +4,29 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
+- test
 - build
-#- build
 - deploy
 
-build:
-  stage: build
+test:
+  stage: test
   image: sassoftinc/24obmen
-  services:
-  - docker:dind
+  artifacts:
+    paths:
+    - vendor
   script:
   - composer install
   - vendor/bin/codecept run unit
-  - ./docker/build.sh
 
-#build:
-#  stage: build
-#  image: docker:stable
-#  dependencies:
-#  - test
-#  services:
-#  - docker:dind
-#  script:
+build:
+  stage: build
+  image: docker:stable
+  dependencies:
+  - test
+  services:
+  - docker:dind
+  script:
+  - ls -l
 #  - ./docker/build.sh
 
 deploy:
