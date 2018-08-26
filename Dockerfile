@@ -22,9 +22,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN mkdir -p \
     /run/supervisord /var/log/supervisord \
     /run/nginx \
-    /var/log/cping\
+    /var/log/1biz\
     /app/web/assets
-RUN chown www-data /var/log/cping
+RUN chown www-data /var/log/1biz
 RUN chown www-data /app/web/assets
 
 # Replace configuration files
