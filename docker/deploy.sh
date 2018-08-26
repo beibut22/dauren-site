@@ -8,7 +8,7 @@ printf "\\n\\n**** Web. Deployment ****\\n\\n"
 ssh root@$TARGET_HOST "docker pull registry.gitlab.com/sassoftinc/1biz:latest"
 ssh root@$TARGET_HOST "docker stop 1biz || true"
 ssh root@$TARGET_HOST "docker rm 1biz || true"
-ssh root@$TARGET_HOST "docker rmi registry.gitlab.com/sassoftinc/1biz:current"
+ssh root@$TARGET_HOST "docker rmi registry.gitlab.com/sassoftinc/1biz:current || true"
 ssh root@$TARGET_HOST "docker tag registry.gitlab.com/sassoftinc/1biz:latest registry.gitlab.com/sassoftinc/1biz:current"
 ssh root@$TARGET_HOST "docker run --name 1biz --restart always -d -p 3005:80 \
 -e VIRTUAL_HOST=1biz.kz \
