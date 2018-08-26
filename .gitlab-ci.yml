@@ -18,6 +18,8 @@ test:
 build:
   stage: build
   image: docker:stable
+  dependencies:
+  - test
   services:
   - docker:dind
   script:
