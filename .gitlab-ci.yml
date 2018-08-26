@@ -26,8 +26,7 @@ build:
   services:
   - docker:dind
   script:
-  - ls -l
-#  - ./docker/build.sh
+  - ./docker/build.sh
 
 deploy:
   image: sassoftinc/24obmen
