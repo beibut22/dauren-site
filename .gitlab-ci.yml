@@ -4,8 +4,16 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
+- test
 - build
 - deploy
+
+test:
+  stage: test
+  image: sassoftinc/24obmen
+  script:
+  - composer install
+  - vendor/bin/codecept run unit
 
 build:
   stage: build
