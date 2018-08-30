@@ -12,6 +12,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
+$this->title = '1biz.kz - продажа готового бизнеса в Казахстане';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -317,7 +318,7 @@ AppAsset::register($this);
 <!--                                            </div>-->
 <!--                                        </li>-->
                                         <li class="nav-item">
-                                            <a class="nav-item" href="#">Главная</a>
+                                            <a class="nav-item" href="#"><strong>Главная</strong></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-item" href="#">Объекты</a>
