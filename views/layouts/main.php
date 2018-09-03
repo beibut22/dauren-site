@@ -61,10 +61,14 @@ AppAsset::register($this);
                     <div class="container clearfix">
                         <div class="pull-left">
                             <ul class="login-menu clearfix">
-                                <li><a href="#"><i class="fa fa-list"></i> Мои объекты</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Избранное</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i> Мой профиль</a></li>
-                                <li><a href="/logout"><i class="fa fa-power-off"></i> Выйти</a></li>
+                                <?php if (!Yii::$app->user->isGuest) { ?>
+                                    <li><a href="#"><i class="fa fa-user"></i> Мой профиль</a></li>
+                                    <li><a href="#"><i class="fa fa-list"></i> Мои объекты</a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i> Избранное</a></li>
+                                    <li><a href="/logout"><i class="fa fa-power-off"></i> Выйти</a></li>
+                                <?php } else { ?>
+                                    <li><a href="/login"><i class="fa fa-power-off"></i> Авторизация</a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -112,11 +116,15 @@ AppAsset::register($this);
                                         <li class="nav-item">
                                             <a class="nav-item" href="#">Контакты</a>
                                         </li>
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-item" href="#">Мой профиль</a>-->
+<!--                                        </li>-->
                                         <li class="nav-item">
-                                            <a class="nav-item" href="#">Мой профиль</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-item" href="#">Регистрация / Авторизация</a>
+                                            <?php if (Yii::$app->user->isGuest) { ?>
+                                                <a class="nav-item" href="/login">Регистрация / Авторизация</a>
+                                            <?php } else { ?>
+                                                <a class="nav-item" href="/">Профиль</a>
+                                            <?php }?>
                                         </li>
                                     </ul>
                                 </div>

@@ -5,6 +5,8 @@ $db = require __DIR__.'/db.php';
 
 $config = [
     'id' => '1biz',
+    'sourceLanguage' => 'ru',
+    'language' => 'ru',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -74,7 +76,7 @@ $config = [
             'enableConfirmation' => false,
             'urlRules' => [],
             'controllerMap' => [
-                'registration' => 'app\controllers\user\RegistrationController',
+//                'registration' => 'app\controllers\user\RegistrationController',
             ],
         ],
     ],
