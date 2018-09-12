@@ -16,6 +16,7 @@ class m180904_190229_create_products_table extends Migration
             'id' => $this->primaryKey(),
             'fk_user' => $this->integer()->notNull(),
             'fk_category' => $this->integer()->notNull(),
+            'name' => $this->string(100)->notNull(),
             'product_type' => $this->string(100)->notNull(), # покупка продажа
             'country' => $this->string(100)->notNull(),
             'city' => $this->string(100)->notNull(),

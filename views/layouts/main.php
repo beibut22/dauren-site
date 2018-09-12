@@ -63,7 +63,7 @@ AppAsset::register($this);
                             <ul class="login-menu clearfix">
                                 <?php if (!Yii::$app->user->isGuest) { ?>
                                     <li><a href="/cabinet"><i class="fa fa-user"></i> Мой профиль</a></li>
-                                    <li><a href="/cabinet/products"><i class="fa fa-list"></i> Мои объекты</a></li>
+                                    <li><a href="/cabinet/products"><i class="fa fa-list"></i> Мои объявления</a></li>
                                     <li><a href="/cabinet/favourite"><i class="fa fa-star"></i> Избранное</a></li>
                                     <li><a href="/logout"><i class="fa fa-power-off"></i> Выйти</a></li>
                                 <?php } else { ?>
@@ -108,10 +108,7 @@ AppAsset::register($this);
                                             <a class="nav-item" href="/"><strong>Главная</strong></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-item" href="/cabinet/products">Объекты</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-item" href="#">Добавить объект</a>
+                                            <a class="nav-item" href="/products">Объявления</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-item" href="#">Контакты</a>

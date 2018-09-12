@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $fk_user
  * @property integer $fk_category
+ * @property string $name
  * @property string $product_type
  * @property string $country
  * @property string $city
@@ -33,6 +34,10 @@ use yii\db\ActiveRecord;
  */
 class Product extends ActiveRecord
 {
+    const STATUS_DISABLED = 0;
+
+    const STATUS_ENABLED = 1;
+
     public static function tableName()
     {
         return 'products';

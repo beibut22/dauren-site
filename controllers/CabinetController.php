@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\bus\commands\ChangePasswordCommand;
+use app\bus\repositories\ProductsRepository;
+use app\models\AddForm;
 use dektrium\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
@@ -27,7 +29,7 @@ class CabinetController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'profile', 'products', 'favourite'],
+                        'actions' => ['index', 'profile', 'products', 'favourite', 'add'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -74,7 +76,17 @@ class CabinetController extends Controller
 
     public function actionProducts()
     {
-        return $this->render('products');
+        $productsRepository = new ProductsRepository();
+        $products = $productsRepository->findAllByUserId($this->user->id, true);
+
+        return $this->render('products', ['products' => $products]);
+    }
+
+    public function actionAdd()
+    {
+        $form = new AddForm();
+
+        return $this->render('add', ['form' => $form]);
     }
 
     public function actionFavourite()
