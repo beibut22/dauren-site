@@ -20,6 +20,7 @@ $config = [
                 'class' => 'trntv\bus\locators\ClassNameLocator',
                 'handlers' => [
                     'app\bus\commands\ChangePasswordCommand' => 'app\bus\handlers\ChangePasswordHandler',
+                    'app\bus\commands\AddProductCommand' => 'app\bus\handlers\AddProductHandler',
                 ],
             ],
         ],

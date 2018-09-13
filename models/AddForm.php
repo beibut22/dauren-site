@@ -44,15 +44,22 @@ class AddForm extends Model
 
     public $img1;
 
+    public $imgFile1;
+
     public $img2;
 
+    public $imgFile2;
+
     public $img3;
+
+    public $imgFile3;
 
     public function rules()
     {
         return [
-            [['name', 'country', 'city', 'address', 'zip', 'price', 'description'], 'required'],
+            [['name', 'country', 'city', 'price', 'description'], 'required'],
             [['price', 'priceActive', 'priceProfit', 'priceTrade'], 'number'],
+            [['imgFile1', 'imgFile2', 'imgFile3'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -67,17 +74,32 @@ class AddForm extends Model
             'address' => 'Адрес',
             'zip' => 'Индекс',
             'lawType' => 'Право собственности',
-            'licensed' => 'Требует лицензирование',
-            'priceActive' => 'Стоимость собственных активов',
-            'priceProfit' => 'Приблизительный доход бизнеса',
+            'licensed' => 'Вид деятельности',
+            'priceActive' => 'Стоимость собств. активов',
+            'priceProfit' => 'Приблиз. доход',
             'perspectives' => 'Перспективы роста дохода',
             'price' => 'Продажная цена',
-            'priceTrade' => 'Продажная цена с торгом',
+            'priceTrade' => 'Продажная цена (торг)',
             'description' => 'Описание',
             'img1' => 'Картинка 1',
+            'imgFile1' => 'Картинка 1',
             'img2' => 'Картинка 2',
+            'imgFile2' => 'Картинка 2',
             'img3' => 'Картинка 3',
+            'imgFile3' => 'Картинка 3',
         ];
     }
+
+//    public function upload()
+//    {
+//        if ($this->validate()) {
+//            foreach ($this->imageFiles as $file) {
+//                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+//            }
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 }

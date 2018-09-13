@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\bus\commands\AddProductCommand;
 use app\bus\commands\ChangePasswordCommand;
 use app\bus\repositories\ProductsRepository;
 use app\models\AddForm;
+use app\models\Category;
 use dektrium\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 class CabinetController extends Controller
@@ -86,7 +89,42 @@ class CabinetController extends Controller
     {
         $form = new AddForm();
 
-        return $this->render('add', ['form' => $form]);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $command = new AddProductCommand();
+            $command->userId = $this->user->id;
+            $command->address = $form->address;
+            $command->categoryId = $form->categoryId;
+            $command->city = $form->city;
+            $command->country = $form->country;
+            $command->description = $form->description;
+            $command->lawType = $form->lawType;
+            $command->licensed = $form->licensed;
+            $command->name = $form->name;
+            $command->perspectives = $form->perspectives;
+            $command->price = $form->price;
+            $command->priceActive = $form->priceActive;
+            $command->priceProfit = $form->priceProfit;
+            $command->priceTrade = $form->priceTrade;
+            $command->productType = $form->productType;
+            $command->zip = $form->zip;
+
+            Yii::$app->commandBus->handle($command);
+            Yii::$app->session->setFlash('success', "Saved");
+            $this->refresh();
+
+        }
+//        if (Yii::$app->request->isPost) {
+//            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+//            if ($model->upload()) {
+//                // file is uploaded successfully
+//                return;
+//            }
+//        }
+
+        $categories = Category::find()->orderBy('name ASC')->all();
+        $categories = ArrayHelper::map($categories, 'id', 'name');
+
+        return $this->render('add', ['addForm' => $form, 'categories' => $categories]);
     }
 
     public function actionFavourite()

@@ -1,8 +1,10 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\AddForm;
 
 /* @var $this yii\web\View */
+/* @var $addForm AddForm */
+/* @var $categories array */
 
 
 $this->title = 'Добавить объявление. 1biz.kz - продажа готового бизнеса в Казахстане';
@@ -29,41 +31,67 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                             'template' => "<div class='control-group'> {label} </div> <div class='controls'>{input} {error}</div>\n",
                             'labelOptions' => ['class' => 'control-label'],
                         ],
+                        'options' => ['class' => 'form-additional', 'enctype' => 'multipart/form-data'],
                     ]); ?>
 
-                    <?php \yii\widgets\ActiveForm::end(); ?>
+                    <?= $form->field($addForm, 'name')->textInput(['placeholder' => 'Название объявления']) ?>
 
-<!--                    <form method="post" class="form-additional">-->
-<!--                        --><?//= Html:: hiddenInput(\Yii:: $app->getRequest()->csrfParam,
-//                            \Yii:: $app->getRequest()->getCsrfToken(), []) ?>
-<!--                        <div class="control-group">-->
-<!--                            <label class="control-label" for="currentPassword">Текущий пароль</label>-->
-<!--                            <div class="controls">-->
-<!--                                <input type="password" name="current_password" value="" class="form-control"-->
-<!--                                       id="currentPassword" placeholder="Введите текущий пароль" autocomplete="off"/>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="control-group">-->
-<!--                            <label class="control-label" for="newPassword">Новый пароль</label>-->
-<!--                            <div class="controls">-->
-<!--                                <input type="password" name="new_password" value="" class="form-control"-->
-<!--                                       id="newPassword" placeholder="Введите новый пароль" autocomplete="off"/>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="control-group">-->
-<!--                            <label class="control-label">Повторить пароль</label>-->
-<!--                            <div class="controls">-->
-<!--                                <input type="password" name="new_password_repeat" value="" class="form-control"-->
-<!--                                       id="inputPasswordConfirm" placeholder="Повторите новый пароль"-->
-<!--                                       autocomplete="off"/>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="control-group">-->
-<!--                            <div class="controls">-->
-<!--                                <button type="submit" class="btn btn-success">Сохранить</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
+                    <?= $form->field($addForm, 'categoryId')->dropDownList($categories) ?>
+
+                    <?= $form->field($addForm, 'productType')->dropDownList([
+                        'sell' => 'Продажа',
+                        'buy' => 'Покупка',
+                    ]) ?>
+
+                    <?= $form->field($addForm, 'country')->dropDownList([
+                        'Казахстан' => 'Казахстан',
+                    ]) ?>
+
+                    <?= $form->field($addForm, 'city')->dropDownList([
+                        'Астана' => 'Астана',
+                        'Алматы' => 'Алматы',
+                    ]) ?>
+
+                    <?= $form->field($addForm, 'address')->textInput(['placeholder'=>'Добавьте адрес где находится объект']) ?>
+
+                    <?= $form->field($addForm, 'zip')->textInput(['placeholder'=>'Добавьте почтовый индекс объекта']) ?>
+
+                    <?= $form->field($addForm, 'lawType')->dropDownList([
+                        'Частная' => 'Частная',
+                        'Арендованная' => 'Арендованная',
+                    ]) ?>
+
+                    <?= $form->field($addForm, 'licensed')->dropDownList([
+                        '0' => 'Не лицензированная',
+                        '1' => 'Лицензированная',
+                    ]) ?>
+
+                    <?= $form->field($addForm, 'priceActive')->textInput(['placeholder'=>'Стоимость собственных активов объекта в тенге']) ?>
+
+                    <?= $form->field($addForm, 'priceProfit')->textInput(['placeholder'=>'Приблизительная доходность объекта']) ?>
+
+                    <?= $form->field($addForm, 'perspectives')->textInput() ?>
+
+                    <?= $form->field($addForm, 'price')->textInput(['placeholder'=>'Цена объекта без торгов']) ?>
+
+                    <?= $form->field($addForm, 'priceTrade')->textInput(['placeholder'=>'Возможная цена объекта при торге']) ?>
+
+                    <?= $form->field($addForm, 'description')->textarea(['placeholder'=>'Добавьте словестное описание объекта']) ?>
+
+                    <?= $form->field($addForm, 'imgFile1')->fileInput() ?>
+
+                    <?= $form->field($addForm, 'imgFile2')->fileInput() ?>
+
+                    <?= $form->field($addForm, 'imgFile3')->fileInput() ?>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success">Добавить объявление</button>
+                        </div>
+                    </div>
+
+
+                    <?php \yii\widgets\ActiveForm::end(); ?>
 
                 </div><!-- /.widget-form-->
             </div> <!-- /. widget-table-->
