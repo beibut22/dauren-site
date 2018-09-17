@@ -3,11 +3,11 @@
 use app\models\AddForm;
 
 /* @var $this yii\web\View */
-/* @var $addForm AddForm */
+/* @var $editForm AddForm */
 /* @var $categories array */
 
 
-$this->title = 'Добавить объявление. 1biz.kz - продажа готового бизнеса в Казахстане';
+$this->title = 'Редактировать объявление:'.$editForm->name.'. 1biz.kz - продажа готового бизнеса в Казахстане';
 ?>
 <main class="main section-color-primary">
     <div class="container">
@@ -17,9 +17,10 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                 <section class="top-title">
                     <ul class="breadcrumb">
                         <li class="item"><a href="/"> Главная </a></li>
-                        <li class="item"> Добавить объявление</li>
+                        <li class="item"><a href="/cabinet/products"> Мои объявления </a></li>
+                        <li class="item"> Редактировать объявление</li>
                     </ul>
-                    <h1 class="h-side-title page-title page-title-big text-color-primary">Добавить объявление</h1>
+                    <h1 class="h-side-title page-title page-title-big text-color-primary">Редактировать объявление</h1>
                     <?php if (Yii::$app->session->hasFlash('success')): ?>
                         <br>
                         <div class="alert alert-success">
@@ -30,7 +31,7 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                 </section> <!-- /. content-header -->
                 <div class="widget  widget-box box-container widget-form form-main" id="form2">
                     <div class="widget-header">
-                        <h2>Новое объявление</h2>
+                        <h2>Редактировать объявление</h2>
                     </div>
 
                     <?php $form = \yii\widgets\ActiveForm::begin([
@@ -41,54 +42,54 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                         'options' => ['class' => 'form-additional', 'enctype' => 'multipart/form-data'],
                     ]); ?>
 
-                    <?= $form->field($addForm, 'name')->textInput(['placeholder' => 'Название объявления']) ?>
+                    <?= $form->field($editForm, 'name')->textInput(['placeholder' => 'Название объявления']) ?>
 
-                    <?= $form->field($addForm, 'categoryId')->dropDownList($categories) ?>
+                    <?= $form->field($editForm, 'categoryId')->dropDownList($categories) ?>
 
-                    <?= $form->field($addForm, 'productType')->dropDownList([
+                    <?= $form->field($editForm, 'productType')->dropDownList([
                         'sell' => 'Продажа',
                         'buy' => 'Покупка',
                     ]) ?>
 
-                    <?= $form->field($addForm, 'country')->dropDownList([
+                    <?= $form->field($editForm, 'country')->dropDownList([
                         'Казахстан' => 'Казахстан',
                     ]) ?>
 
-                    <?= $form->field($addForm, 'city')->dropDownList([
+                    <?= $form->field($editForm, 'city')->dropDownList([
                         'Астана' => 'Астана',
                         'Алматы' => 'Алматы',
                     ]) ?>
 
-                    <?= $form->field($addForm,
+                    <?= $form->field($editForm,
                         'address')->textInput(['placeholder' => 'Добавьте адрес где находится объект']) ?>
 
-                    <?= $form->field($addForm,
+                    <?= $form->field($editForm,
                         'zip')->textInput(['placeholder' => 'Добавьте почтовый индекс объекта']) ?>
 
-                    <?= $form->field($addForm, 'lawType')->dropDownList([
+                    <?= $form->field($editForm, 'lawType')->dropDownList([
                         'Частная' => 'Частная',
                         'Арендованная' => 'Арендованная',
                     ]) ?>
 
-                    <?= $form->field($addForm, 'licensed')->dropDownList([
+                    <?= $form->field($editForm, 'licensed')->dropDownList([
                         '0' => 'Не лицензированная',
                         '1' => 'Лицензированная',
                     ]) ?>
 
-                    <?= $form->field($addForm,
+                    <?= $form->field($editForm,
                         'priceActive')->textInput(['placeholder' => 'Стоимость собственных активов объекта в тенге']) ?>
 
-                    <?= $form->field($addForm,
+                    <?= $form->field($editForm,
                         'priceProfit')->textInput(['placeholder' => 'Приблизительная доходность объекта']) ?>
 
-                    <?= $form->field($addForm, 'perspectives')->textInput() ?>
+                    <?= $form->field($editForm, 'perspectives')->textInput() ?>
 
-                    <?= $form->field($addForm, 'price')->textInput(['placeholder' => 'Цена объекта без торгов']) ?>
+                    <?= $form->field($editForm, 'price')->textInput(['placeholder' => 'Цена объекта без торгов']) ?>
 
-                    <?= $form->field($addForm,
+                    <?= $form->field($editForm,
                         'priceTrade')->textInput(['placeholder' => 'Возможная цена объекта при торге']) ?>
 
-                    <?= $form->field($addForm,
+                    <?= $form->field($editForm,
                         'description')->textarea(['placeholder' => 'Добавьте словестное описание объекта']) ?>
 
 <!--                    --><?//= $form->field($addForm, 'imgFile1')->fileInput() ?>
@@ -99,7 +100,7 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
 
                     <div class="control-group">
                         <div class="controls">
-                            <button type="submit" class="btn btn-success">Добавить объявление</button>
+                            <button type="submit" class="btn btn-success">Сохранить объявление</button>
                         </div>
                     </div>
 

@@ -21,6 +21,7 @@ $config = [
                 'handlers' => [
                     'app\bus\commands\ChangePasswordCommand' => 'app\bus\handlers\ChangePasswordHandler',
                     'app\bus\commands\AddProductCommand' => 'app\bus\handlers\AddProductHandler',
+                    'app\bus\commands\EditProductCommand' => 'app\bus\handlers\EditProductHandler',
                 ],
             ],
         ],
@@ -57,6 +58,8 @@ $config = [
                 'register' => 'user/registration/register',
                 'recover' => 'user/recovery/request',
                 'logout' => 'site/logout',
+
+                'cabinet/product/<id:\w+>' => 'cabinet/product',
 
                 'admin' => 'admin/index',
             ],

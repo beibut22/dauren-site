@@ -4,14 +4,17 @@ namespace app\controllers;
 
 use app\bus\commands\AddProductCommand;
 use app\bus\commands\ChangePasswordCommand;
+use app\bus\commands\EditProductCommand;
 use app\bus\repositories\ProductsRepository;
 use app\models\AddForm;
 use app\models\Category;
+use app\models\EditForm;
 use dektrium\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class CabinetController extends Controller
 {
@@ -32,7 +35,7 @@ class CabinetController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'profile', 'products', 'favourite', 'add'],
+                        'actions' => ['index', 'profile', 'products', 'favourite', 'add', 'product'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -108,11 +111,13 @@ class CabinetController extends Controller
             $command->productType = $form->productType;
             $command->zip = $form->zip;
 
+
             Yii::$app->commandBus->handle($command);
-            Yii::$app->session->setFlash('success', "Saved");
-            $this->refresh();
+            Yii::$app->session->setFlash('success', "Добавлено");
+            $this->redirect('/cabinet/products');
 
         }
+
 //        if (Yii::$app->request->isPost) {
 //            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 //            if ($model->upload()) {
@@ -127,10 +132,67 @@ class CabinetController extends Controller
         return $this->render('add', ['addForm' => $form, 'categories' => $categories]);
     }
 
-    public function actionFavourite()
+    public function actionProduct($id)
     {
-        return $this->render('favourite');
+        $productsRepo = new ProductsRepository();
+        $product = $productsRepo->findOneByIdAndUserId($id, $this->user->id);
+
+        if ($product == null) {
+            throw new NotFoundHttpException('Объявление не найдено');
+        }
+
+        $editForm = new EditForm();
+
+        if ($editForm->load(Yii::$app->request->post()) && $editForm->validate()) {
+            $command = new EditProductCommand();
+            $command->productId = $product->id;
+            $command->userId = $this->user->id;
+            $command->address = $editForm->address;
+            $command->categoryId = $editForm->categoryId;
+            $command->city = $editForm->city;
+            $command->country = $editForm->country;
+            $command->description = $editForm->description;
+            $command->lawType = $editForm->lawType;
+            $command->licensed = $editForm->licensed;
+            $command->name = $editForm->name;
+            $command->perspectives = $editForm->perspectives;
+            $command->price = $editForm->price;
+            $command->priceActive = $editForm->priceActive;
+            $command->priceProfit = $editForm->priceProfit;
+            $command->priceTrade = $editForm->priceTrade;
+            $command->productType = $editForm->productType;
+            $command->zip = $editForm->zip;
+
+            Yii::$app->commandBus->handle($command);
+            Yii::$app->session->setFlash('success', "Добавлено");
+            $this->redirect('/cabinet/product/'.$product->id);
+        }
+
+        $editForm->address = $product->address;
+        $editForm->categoryId = $product->fk_category;
+        $editForm->city = $product->city;
+        $editForm->country = $product->country;
+        $editForm->description = $product->description;
+        $editForm->lawType = $product->law_type;
+        $editForm->licensed = $product->licensed;
+        $editForm->name = $product->name;
+        $editForm->perspectives = $product->perspectives;
+        $editForm->price = $product->price;
+        $editForm->priceActive = $product->price_active;
+        $editForm->priceProfit = $product->price_profit;
+        $editForm->priceTrade = $product->price_trade;
+        $editForm->productType = $product->product_type;
+        $editForm->zip = $product->zip;
+
+        $categories = Category::find()->orderBy('name ASC')->all();
+        $categories = ArrayHelper::map($categories, 'id', 'name');
+
+
+        return $this->render('product', ['editForm' => $editForm, 'categories' => $categories]);
     }
 
-
+    public function actionFavorite()
+    {
+        return $this->render('favorite');
+    }
 }

@@ -25,6 +25,11 @@ class ProductsRepository
         return Product::findOne(['id' => $id]);
     }
 
+    public function findOneByIdAndUserId($id, $userId)
+    {
+        return Product::findOne(['id' => $id, 'fk_user' => $userId]);
+    }
+
     /**
      * @param bool $useDataProvider
      * @return array|ActiveDataProvider|\yii\db\ActiveRecord[]

@@ -20,7 +20,7 @@ class m180904_190229_create_products_table extends Migration
             'product_type' => $this->string(100)->notNull(), # покупка продажа
             'country' => $this->string(100)->notNull(),
             'city' => $this->string(100)->notNull(),
-            'address' => $this->string(100)->notNull(),
+            'address' => $this->string(100)->notNull()->defaultValue(''),
             'zip' => $this->string(100)->notNull(),
             'law_type' => $this->string(100)->notNull(), # право собственности
             'licensed' => $this->integer()->notNull()->defaultValue(0),

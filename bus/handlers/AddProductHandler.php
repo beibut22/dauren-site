@@ -3,23 +3,26 @@
 namespace app\bus\handlers;
 
 use app\bus\commands\AddProductCommand;
-use app\bus\repositories\UsersRepository;
+use app\bus\factories\ProductFactory;
+use app\bus\repositories\ProductsRepository;
 use trntv\bus\interfaces\Handler;
 
 class AddProductHandler implements Handler
 {
     /**
-     * @var UsersRepository
+     * @var ProductsRepository
      */
-    private $usersRepository;
+    private $productsRepository;
 
     /**
-     * ChangePasswordHandler constructor.
-     * @param UsersRepository $usersRepository
+     * AddProductHandler constructor.
+     * @param ProductsRepository $productsRepository
+     * @param ProductFactory $productFactory
      */
-    public function __construct(UsersRepository $usersRepository)
+    public function __construct(ProductsRepository $productsRepository, ProductFactory $productFactory)
     {
-        $this->usersRepository = $usersRepository;
+        $this->productsRepository = $productsRepository;
+        $this->productFactory = $productFactory;
     }
 
     /**
@@ -29,6 +32,11 @@ class AddProductHandler implements Handler
      */
     public function handle($command)
     {
+        $product = $this->productFactory->create($command->userId, $command->address, $command->categoryId,
+            $command->city, $command->country, $command->description, $command->lawType, $command->licensed,
+            $command->name, $command->perspectives, $command->price, $command->priceActive, $command->priceProfit,
+            $command->priceTrade, $command->productType, $command->zip);
 
+        $this->productsRepository->save($product);
     }
 }

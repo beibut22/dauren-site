@@ -19,6 +19,14 @@ $this->title = 'Мои объявления. 1biz.kz - продажа готов
                         <li class="item"> Мои объявления</li>
                     </ul>
                     <h1 class="h-side-title page-title page-title-big text-color-primary">Мои объявления</h1>
+
+                    <?php if (Yii::$app->session->hasFlash('success')): ?>
+                        <br>
+                        <div class="alert alert-success">
+                            <?= Yii::$app->session->getFlash('success') ?>
+                        </div>
+                    <?php endif; ?>
+
                 </section> <!-- /. content-header -->
                 <div class="widget widget-box box-container widget-mylistings">
                     <a href="add"><button type="button" class="btn btn-success">Добавить объявление</button></a>
@@ -37,7 +45,7 @@ $this->title = 'Мои объявления. 1biz.kz - продажа готов
                                         'label' => 'Название',
                                         'format' => 'raw',
                                         'value' => function ($data) {
-                                            return $data->name;
+                                            return "<u><a href='product/".$data->id."'>".$data->name."</a></u>";
                                         },
                                     ],
                                     'fk_category' => [
@@ -51,7 +59,8 @@ $this->title = 'Мои объявления. 1biz.kz - продажа готов
                                         'label' => 'Тип объявления',
                                         'format' => 'raw',
                                         'value' => function ($data) {
-                                            return $data->product_type;
+                                            if ($data->product_type=='sell') return 'Продажа';
+                                            return 'Покупка';
                                         },
                                     ],
                                     'country' => [
@@ -65,7 +74,7 @@ $this->title = 'Мои объявления. 1biz.kz - продажа готов
                                         'label' => 'Цена объявления',
                                         'format' => 'raw',
                                         'value' => function ($data) {
-                                            return $data->price;
+                                            return $data->price.' тенге';
                                         },
                                     ],
                                     'address' => [

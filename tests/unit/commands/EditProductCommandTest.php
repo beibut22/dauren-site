@@ -3,14 +3,14 @@
 namespace app\tests\unit\commands;
 
 
-use app\bus\commands\AddProductCommand;
+use app\bus\commands\EditProductCommand;
 use Codeception\Test\Unit;
 
-class AddProductCommandTest extends Unit
+class EditProductCommandTest extends Unit
 {
     public function testCreate()
     {
-        $command = new AddProductCommand();
+        $command = new EditProductCommand();
         $command->userId = 123;
         $command->address = 'address';
         $command->categoryId = 'categoryId';

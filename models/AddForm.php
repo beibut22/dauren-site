@@ -58,7 +58,10 @@ class AddForm extends Model
     {
         return [
             [['name', 'country', 'city', 'price', 'description'], 'required'],
-            [['price', 'priceActive', 'priceProfit', 'priceTrade'], 'number'],
+            [['categoryId','price', 'priceActive', 'priceProfit', 'priceTrade', 'perspectives'], 'number'],
+            [['licensed'], 'integer'],
+            [['name', 'productType','country','city','address','zip','lawType'], 'string', 'max' => 100],
+            [['description'], 'string', 'max' => 500],
             [['imgFile1', 'imgFile2', 'imgFile3'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
