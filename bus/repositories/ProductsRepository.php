@@ -31,12 +31,13 @@ class ProductsRepository
     }
 
     /**
+     * @param int $limit
      * @param bool $useDataProvider
      * @return array|ActiveDataProvider|\yii\db\ActiveRecord[]
      */
-    public function findAll($useDataProvider = false)
+    public function findAll($limit = 10, $useDataProvider = false)
     {
-        $data = Product::find();
+        $data = Product::find()->limit($limit)->orderBy('id DESC');
 
         if ($useDataProvider) {
             $provider = new ActiveDataProvider([

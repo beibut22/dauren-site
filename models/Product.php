@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $fk_user
  * @property integer $fk_category
+ * @property Category $category
  * @property string $name
  * @property string $product_type
  * @property string $country
@@ -50,5 +51,9 @@ class Product extends ActiveRecord
         ];
     }
 
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'fk_category']);
+    }
 
 }

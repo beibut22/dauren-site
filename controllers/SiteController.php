@@ -2,9 +2,9 @@
 
 namespace app\controllers;
 
+use app\bus\repositories\ProductsRepository;
 use Yii;
 use yii\web\Controller;
-use yii\web\Response;
 
 class SiteController extends Controller
 {
@@ -25,27 +25,20 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-        return $this->render('index');
+        $productsRepo = new ProductsRepository();
+        $latestProducts = $productsRepo->findAll();
+
+        return $this->render('index', ['latestProducts' => $latestProducts]);
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
+
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
-
 
 }
