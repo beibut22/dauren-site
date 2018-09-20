@@ -59,6 +59,8 @@ $config = [
                 'recover' => 'user/recovery/request',
                 'logout' => 'site/logout',
 
+                'listing' => 'site/listing',
+
                 'cabinet/product/<id:\w+>' => 'cabinet/product',
 
                 'admin' => 'admin/index',

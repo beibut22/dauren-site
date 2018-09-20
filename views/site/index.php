@@ -1,10 +1,12 @@
 <?php
 
 
+use app\models\Category;
 use app\models\Product;
 
 /* @var $this yii\web\View */
 /* @var $latestProducts Product[] */
+/* @var $categories Category[] */
 
 $this->title = '1biz.kz - продажа готового бизнеса в Казахстане';
 ?>
@@ -107,24 +109,30 @@ $this->title = '1biz.kz - продажа готового бизнеса в Ка
                     <div class="widget-header text-uppercaser">
                         <h2>Фильтр</h2>
                     </div>
-                    <div class="form-additional npad">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Цена от"  />
-                        </div>
+                    <form action="/listing" method="get">
+                        <div class="form-additional npad">
+                            <div class="form-group">
+                                <select class="form-control selectpicker select-secondary" name="category">
+                                    <option selected value="0">Категория бизнеса</option>
+                                    <?php foreach ($categories as $key => $value) { ?>
+                                        <option value="<?= $key ?>"><?= $value ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input name="from" type="text" class="form-control" placeholder="Цена от"/>
+                            </div>
 
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Цена до"  />
+                            <div class="form-group">
+                                <input name="to" type="text" class="form-control" placeholder="Цена до"/>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-wide color-primary" type='submit'>Найти</button>
+                            </div>
                         </div>
-<!--                        <div class="form-group">-->
-<!--                            <input type="text" class="form-control" placeholder="Город"  />-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <input type="text" class="form-control" placeholder="Площадь"  />-->
-<!--                        </div>-->
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-wide color-primary" type='submit'>Найти</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 <!--                <div class="widget widget-box box-container">-->
 <!--                    <div class="widget-header text-uppercaser">-->

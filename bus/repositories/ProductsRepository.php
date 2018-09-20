@@ -33,11 +33,27 @@ class ProductsRepository
     /**
      * @param int $limit
      * @param bool $useDataProvider
+     * @param int $byCategory
+     * @param int $priceFrom
+     * @param int $priceTo
      * @return array|ActiveDataProvider|\yii\db\ActiveRecord[]
      */
-    public function findAll($limit = 10, $useDataProvider = false)
+    public function findAll($limit = 10, $useDataProvider = false, $byCategory = 0, $priceFrom = 0, $priceTo = 0)
     {
-        $data = Product::find()->limit($limit)->orderBy('id DESC');
+        $data = Product::find()->where(['status' => 1])->limit($limit)->orderBy('id DESC');
+
+        if ($byCategory > 0) {
+            $data->andWhere(['fk_category' => $byCategory]);
+        }
+
+        if ($priceFrom > 0) {
+            $data->andWhere('price >='.intval($priceFrom));
+        }
+
+        if ($priceTo > 0) {
+            $data->andWhere('price <'.intval($priceTo));
+        }
+
 
         if ($useDataProvider) {
             $provider = new ActiveDataProvider([
