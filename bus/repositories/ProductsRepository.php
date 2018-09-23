@@ -36,10 +36,19 @@ class ProductsRepository
      * @param int $byCategory
      * @param int $priceFrom
      * @param int $priceTo
+     * @param string $lawType
+     * @param int $licensed
      * @return array|ActiveDataProvider|\yii\db\ActiveRecord[]
      */
-    public function findAll($limit = 10, $useDataProvider = false, $byCategory = 0, $priceFrom = 0, $priceTo = 0)
-    {
+    public function findAll(
+        $limit = 10,
+        $useDataProvider = false,
+        $byCategory = 0,
+        $priceFrom = 0,
+        $priceTo = 0,
+        $lawType = '',
+        $licensed = -1
+    ) {
         $data = Product::find()->where(['status' => 1])->limit($limit)->orderBy('id DESC');
 
         if ($byCategory > 0) {
@@ -52,6 +61,14 @@ class ProductsRepository
 
         if ($priceTo > 0) {
             $data->andWhere('price <'.intval($priceTo));
+        }
+
+        if ($lawType) {
+            $data->andWhere(['law_type' => $lawType]);
+        }
+
+        if ($licensed > 0) {
+            $data->andWhere(['licensed' => $licensed]);
         }
 
 

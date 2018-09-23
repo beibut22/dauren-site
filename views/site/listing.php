@@ -54,7 +54,7 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                         <div class="property-preview-footer  clearfix">
                                             <div class="property-preview-f-left text-color-primary">
                                                 <span class="property-card-value">
-                                                    <?=$product->price_trade?> тенге
+                                                    <?= $product->price_trade ?> тенге
                                                 </span>
                                             </div>
                                         </div>
@@ -65,11 +65,11 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
 
                     </div><!-- /.properties -->
                     <nav class="text-center">
-<!--                        <ul class="pagination">-->
-<!--                            <li class="page-item"><a class="page-link active" href="#">1</a></li>-->
-<!--                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--                        </ul>-->
+                        <!--                        <ul class="pagination">-->
+                        <!--                            <li class="page-item"><a class="page-link active" href="#">1</a></li>-->
+                        <!--                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                        <!--                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                        <!--                        </ul>-->
                     </nav>
                 </div> <!-- /.properties-->
             </div><!-- /.center-content -->
@@ -81,26 +81,58 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                         <h2>Фильтр</h2>
                     </div>
 
-                    <div class="form-additional npad">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Цена от"/>
+                    <form action="/listing" method="get">
+                        <div class="form-additional npad">
+                            <div class="form-group">
+                                <select class="form-control selectpicker select-secondary" name="category">
+                                    <option selected value="0">Категория бизнеса</option>
+                                    <?php foreach ($categories as $key => $value) { ?>
+                                        <option <?php if (Yii::$app->request->get('category') == $key) {
+                                            echo 'selected';
+                                        } ?> value="<?= $key ?>"><?= $value ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input name="from" type="text" class="form-control" placeholder="Цена от"
+                                       value="<?= Yii::$app->request->get('from') ?>"/>
+                            </div>
+
+                            <div class="form-group">
+                                <input name="to" type="text" class="form-control" placeholder="Цена до"
+                                       value="<?= Yii::$app->request->get('to') ?>"/>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control selectpicker select-secondary" name="law_type">
+                                    <option selected value="">Право собственности</option>
+                                    <option <?php if (Yii::$app->request->get('law_type') == 'Частная') {
+                                        echo 'selected';
+                                    } ?> value="Частная">Частная</option>
+                                    <option <?php if (Yii::$app->request->get('law_type') == 'Арендованная') {
+                                        echo 'selected';
+                                    } ?> value="Арендованная">Арендованная</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control selectpicker select-secondary" name="licensed">
+                                    <option selected value="-1">Лицензирование</option>
+                                    <option <?php if (Yii::$app->request->get('licensed') == '0') {
+                                        echo 'selected';
+                                    } ?> value="0">Не требуется</option>
+                                    <option <?php if (Yii::$app->request->get('licensed') == '1') {
+                                        echo 'selected';
+                                    } ?> value="1">Требуется</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-wide color-primary" type='submit'>Найти</button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Цена до"/>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control selectpicker select-secondary" name="category">
-                                <option selected value="0">Категория бизнеса</option>
-                                <?php foreach ($categories as $key => $value) { ?>
-                                    <option value="<?= $key ?>"><?= $value ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-wide color-primary" type='submit'>Обновить результаты
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- /.right side bar -->

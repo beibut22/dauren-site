@@ -34,10 +34,10 @@ class SiteController extends Controller
         return $this->render('index', ['latestProducts' => $latestProducts, 'categories' => $categories]);
     }
 
-    public function actionListing($category = 0, $from = 0, $to = 0)
+    public function actionListing($category = 0, $from = 0, $to = 0, $law_type = '', $licensed = -1)
     {
         $productsRepo = new ProductsRepository();
-        $latestProducts = $productsRepo->findAll(10, false, $category, $from, $to);
+        $latestProducts = $productsRepo->findAll(10, false, $category, $from, $to, $law_type, $licensed);
 
         $categories = Category::find()->orderBy('name ASC')->all();
         $categories = ArrayHelper::map($categories, 'id', 'name');
