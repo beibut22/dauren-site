@@ -67,7 +67,7 @@ class ProductsRepository
             $data->andWhere(['law_type' => $lawType]);
         }
 
-        if ($licensed > 0) {
+        if ($licensed != -1) {
             $data->andWhere(['licensed' => $licensed]);
         }
 

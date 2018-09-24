@@ -58,7 +58,7 @@ $this->title = '1biz.kz - продажа готового бизнеса в Ка
                                 <div class="property-card-header image-box">
                                     <img src="<?=$product->img1?>" alt="" class="" />
 <!--                                    <div class="budget"><i class="fa fa-star"></i></div>-->
-                                    <a href="/product/<?=$product->id?>" class="property-card-hover">
+                                    <a href="/item/<?=$product->id?>" class="property-card-hover">
                                         <img src="img/property-hover-arrow.png" alt="" class="left-icon" />
                                         <img src="img/plus.png" alt="" class="center-icon" />
                                         <img src="img/icon-notice.png" alt="" class="right-icon" />
@@ -66,7 +66,7 @@ $this->title = '1biz.kz - продажа готового бизнеса в Ка
                                 </div>
 
                                 <div class="property-card-box card-box card-block">
-                                    <h3 class="property-card-title"><i class="fa fa-building-o color-primary"></i><a href="/product/<?=$product->id?>"><?=$product->name?></a></h3>
+                                    <h3 class="property-card-title"><i class="fa fa-building-o color-primary"></i><a href="/item/<?=$product->id?>"><?=$product->name?></a></h3>
                                     <ul class="treefield-categories">
                                         <li>
                                             <a class="treefield-box-item btn-default" href="index_car.html"><?=$product->category->name?></a>
@@ -85,7 +85,7 @@ $this->title = '1biz.kz - продажа готового бизнеса в Ка
                                             <span class="count text-color-primary"><?=$product->city?></span>
                                         </li>
                                         <li>
-                                            <a href="/product/<?=$product->id?>"><span class="count text-color-primary">Подробнее...</span></a>
+                                            <a href="/item/<?=$product->id?>"><span class="count text-color-primary">Подробнее...</span></a>
                                         </li>
                                     </ul>
                                 </div>

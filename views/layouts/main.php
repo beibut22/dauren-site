@@ -108,17 +108,10 @@ AppAsset::register($this);
                                             <a class="nav-item" href="/"><strong>Главная</strong></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-item" href="/products">Объявления</a>
+                                            <a class="nav-item" href="/listing">Объявления</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-item" href="#">Контакты</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <?php if (Yii::$app->user->isGuest) { ?>
-                                                <a class="nav-item" href="/login">Регистрация / Авторизация</a>
-                                            <?php } else { ?>
-                                                <a class="nav-item" href="/cabinet">Профиль</a>
-                                            <?php }?>
                                         </li>
                                     </ul>
                                 </div>

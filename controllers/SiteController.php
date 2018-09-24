@@ -7,6 +7,7 @@ use app\models\Category;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -46,6 +47,17 @@ class SiteController extends Controller
         return $this->render('listing', ['latestProducts' => $latestProducts, 'categories' => $categories]);
     }
 
+    public function actionItem($id)
+    {
+        $productsRepo = new ProductsRepository();
+        $product = $productsRepo->findOneById($id);
+
+        if ($product == null) {
+            throw new NotFoundHttpException('Product not found');
+        }
+
+        return $this->render('item', ['product' => $product]);
+    }
 
     public function actionLogout()
     {

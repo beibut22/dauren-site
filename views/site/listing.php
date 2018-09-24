@@ -37,7 +37,7 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                     <div class="property-card-header image-box">
                                         <img src="<?= $product->img1 ?>" alt="" class=""/>
                                         <div class="budget"><i class="fa fa-star"></i></div>
-                                        <a href="/product/<?= $product->id ?>" class="property-card-hover">
+                                        <a href="/item/<?= $product->id ?>" class="property-card-hover">
                                             <img src="assets/img/property-hover-arrow.png" alt="" class="left-icon"/>
                                             <img src="assets/img/plus.png" alt="" class="center-icon"/>
                                             <img src="assets/img/icon-notice.png" alt="" class="right-icon"/>
@@ -48,7 +48,7 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                         <span class="label label-default label-tag-warning">Аренда</span>
                                     </div>
                                     <div class="property-card-box card-box card-block">
-                                        <h3 class="property-card-title"><a href="listing.html"><?= $product->name ?></a>
+                                        <h3 class="property-card-title"><a href="/item/<?= $product->id ?>"><?= $product->name ?></a>
                                         </h3>
                                         <div class="property-card-descr"><?= $product->description ?>...</div>
                                         <div class="property-preview-footer  clearfix">

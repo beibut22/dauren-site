@@ -60,6 +60,7 @@ $config = [
                 'logout' => 'site/logout',
 
                 'listing' => 'site/listing',
+                'item/<id:\w+>' => 'site/item',
 
                 'cabinet/product/<id:\w+>' => 'cabinet/product',
 
