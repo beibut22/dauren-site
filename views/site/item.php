@@ -2,9 +2,11 @@
 
 
 use app\models\Product;
+use app\models\SendMailForm;
 
 /* @var $this yii\web\View */
 /* @var $product Product */
+/* @var $contactForm SendMailForm */
 
 
 $this->title = 'Объявление. 1biz.kz - продажа готового бизнеса в Казахстане';
@@ -69,23 +71,30 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                     <ul class="list-overview">
                         <li>
                             <span class="list-overview-option">Адрес</span>
-                            <span class="list-overview-value" title="<?=$product->address?>, <?=$product->city?>"><?=$product->address?>, <?=$product->city?></span>
+                            <span class="list-overview-value"
+                                  title="<?= $product->address ?>, <?= $product->city ?>"><?= $product->address ?>
+                                , <?= $product->city ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Категория: </span>
-                            <span class="list-overview-value"><span class="label label-default label-tag-primary"><?=$product->category->name?></span></span>
+                            <span class="list-overview-value"><span
+                                        class="label label-default label-tag-primary"><?= $product->category->name ?></span></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Операция: </span>
-                            <span class="list-overview-value"><?php if ($product->product_type=='sell') echo 'Продажа'; else echo 'Покупка'?></span>
+                            <span class="list-overview-value"><?php if ($product->product_type == 'sell') {
+                                    echo 'Продажа';
+                                } else echo 'Покупка' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Cобственность: </span>
-                            <span class="list-overview-value"><?=$product->law_type?></span>
+                            <span class="list-overview-value"><?= $product->law_type ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Лиценизирование </span>
-                            <span class="list-overview-value"><?php if ($product->licensed==0) echo '-'; else echo 'Да'?></span>
+                            <span class="list-overview-value"><?php if ($product->licensed == 0) {
+                                    echo '-';
+                                } else echo 'Да' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Рейтинг</span>
@@ -99,11 +108,11 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         </li>
                         <li>
                             <span class="list-overview-option">Цена без торгов: </span>
-                            <span class="list-overview-value"><?=$product->price?> тенге</span>
+                            <span class="list-overview-value"><?= $product->price ?> тенге</span>
                         </li>
                         <li>
                             <span class="list-overview-option">Цена (торг):</span>
-                            <span class="list-overview-value"><?=$product->price_trade?> тенге</span>
+                            <span class="list-overview-value"><?= $product->price_trade ?> тенге</span>
                         </li>
                     </ul>
                 </div><!-- /. widget-OVERVIEW -->
@@ -165,83 +174,94 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         </li>
                         <li class="custom-address">
                             <span class="list-overview-option">Адрес</span>
-                            <span class="list-overview-value" title="<?=$product->address?>, <?=$product->city?>"><?=$product->address?>, <?=$product->city?></span>
+                            <span class="list-overview-value"
+                                  title="<?= $product->address ?>, <?= $product->city ?>"><?= $product->address ?>
+                                , <?= $product->city ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Категория: </span>
-                            <span class="list-overview-value"><span class="label label-default label-tag-primary"><?=$product->category->name?></span></span>
+                            <span class="list-overview-value"><span
+                                        class="label label-default label-tag-primary"><?= $product->category->name ?></span></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Операция: </span>
-                            <span class="list-overview-value"><?php if ($product->product_type=='sell') echo 'Продажа'; else echo 'Покупка'?></span>
+                            <span class="list-overview-value"><?php if ($product->product_type == 'sell') {
+                                    echo 'Продажа';
+                                } else echo 'Покупка' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Cобственность: </span>
-                            <span class="list-overview-value"><?=$product->law_type?></span>
+                            <span class="list-overview-value"><?= $product->law_type ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Лиценизирование </span>
-                            <span class="list-overview-value"><?php if ($product->licensed==0) echo '-'; else echo 'Да'?></span>
+                            <span class="list-overview-value"><?php if ($product->licensed == 0) {
+                                    echo '-';
+                                } else echo 'Да' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Активы: </span>
-                            <span class="list-overview-value"><?=$product->price_active?> тенге</span>
+                            <span class="list-overview-value"><?= $product->price_active ?> тенге</span>
                         </li>
                         <li>
                             <span class="list-overview-option">Доходность: </span>
-                            <span class="list-overview-value"><?=$product->price_profit?> тенге</span>
+                            <span class="list-overview-value"><?= $product->price_profit ?> тенге</span>
                         </li>
                         <li>
                             <span class="list-overview-option">Цена без торгов: </span>
-                            <span class="list-overview-value"><strong><?=$product->price?> тенге</strong></span>
+                            <span class="list-overview-value"><strong><?= $product->price ?> тенге</strong></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Цена (торг):</span>
-                            <span class="list-overview-value"><strong><?=$product->price_trade?> тенге</strong></span>
+                            <span class="list-overview-value"><strong><?= $product->price_trade ?> тенге</strong></span>
                         </li>
                     </ul>
                 </div><!-- /. widget-OVERVIEW -->
 
-<!--                <div class="widget widget-box box-container widget-agent">-->
-<!--                    <div class="media">-->
-<!--                        <div class="agent-logo media-left media-middle">-->
-<!--                            <a href="profile.html" class="img-circle-cover">-->
-<!--                                <img src="assets/img/placeholders/90x90.png" alt="" class="img-circle"/>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="agent-details media-right media-top">-->
-<!--                            <a href="profile.html" class="agent-name text-color-primary">Владелец объявления</a>-->
-<!--                            <span class="phone">+7 (495)92 12 321</span>-->
-<!--                            <a href="mailto:#" class="mail text-color-primary">Email скрыт</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="widget widget-box box-container widget-agent">-->
+                <!--                    <div class="media">-->
+                <!--                        <div class="agent-logo media-left media-middle">-->
+                <!--                            <a href="profile.html" class="img-circle-cover">-->
+                <!--                                <img src="assets/img/placeholders/90x90.png" alt="" class="img-circle"/>-->
+                <!--                            </a>-->
+                <!--                        </div>-->
+                <!--                        <div class="agent-details media-right media-top">-->
+                <!--                            <a href="profile.html" class="agent-name text-color-primary">Владелец объявления</a>-->
+                <!--                            <span class="phone">+7 (495)92 12 321</span>-->
+                <!--                            <a href="mailto:#" class="mail text-color-primary">Email скрыт</a>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
 
                 <div class="widget widget-form" id="form">
-                    <form action="#" method="post">
-                        <div class="box-container widget-body">
-                            <div class="widget-header text-uppercaser"><h2>Написать</h2></div>
+                    <div class="box-container widget-body">
+                        <div class="widget-header text-uppercaser"><h2>Написать</h2></div>
+                        <?php if (Yii::$app->user->isGuest) { ?>
                             <div class="form-additional">
-                                <div class="form-group">
-                                    <input type="text" name='name' class="form-control" placeholder="Ваше имя"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="phone" class="form-control" placeholder="Контактный телефон"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="mail" class="form-control" placeholder="Email"/>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="message" placeholder="Сообщение"
-                                              rows='3'></textarea>
-                                </div>
-                                <div class="form-group form-group-submit">
-                                    <input type="submit" name='address'
-                                           class="btn btn-primary btn-wide color-primary btn-property" value="Send"/>
-                                </div>
+                                <a href="/login">Авторизуйтесь</a>, чтобы написать
+                                <br>&nbsp;
                             </div>
-                        </div>
-                    </form>
+                        <?php } else { ?>
+                            <?php $form = \yii\widgets\ActiveForm::begin([
+                                'fieldConfig' => [
+                                    'template' => "<div class='form-group'> {input} {error}</div>\n",
+                                ],
+                                'options' => ['class' => 'form-additional'],
+                            ]); ?>
+                            <?= $form->field($contactForm, 'name')->textInput(['placeholder' => 'Ваше имя']) ?>
+                            <?= $form->field($contactForm,
+                                'phone')->textInput(['placeholder' => 'Контактный телефон']) ?>
+                            <?= $form->field($contactForm, 'email')->textInput(['placeholder' => 'Email']) ?>
+                            <?= $form->field($contactForm, 'message')->textInput(['placeholder' => 'Сообщение']) ?>
+
+                            <div class="form-group form-group-submit">
+                                <input type="submit" name='address'
+                                       class="btn btn-primary btn-wide color-primary btn-property"
+                                       value="Отправить"/>
+                            </div>
+                            <?php \yii\widgets\ActiveForm::end(); ?>
+                        <?php } ?>
+                    </div>
                 </div><!-- /.widget-form-->
             </div>
             <!-- /.right side bar -->

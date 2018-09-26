@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use dektrium\user\models\User;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -12,6 +13,7 @@ use yii\db\ActiveRecord;
  * @property integer $fk_user
  * @property integer $fk_category
  * @property Category $category
+ * @property User $user
  * @property string $name
  * @property string $product_type
  * @property string $country
@@ -54,6 +56,11 @@ class Product extends ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'fk_category']);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'fk_user']);
     }
 
 }

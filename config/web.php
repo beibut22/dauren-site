@@ -1,5 +1,7 @@
 <?php
 
+use wadeshuler\sendgrid\Mailer;
+
 $params = require __DIR__.'/params.php';
 $db = require __DIR__.'/db.php';
 
@@ -13,6 +15,17 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
+    'container' => [
+        'definitions' => [
+            'wadeshuler\sendgrid\Mailer' => function ($container, $params, $config) {
+                return new Mailer([
+                    'apiKey' => getenv('SENDGRID_API_KEY'),
+                    'useFileTransport' => false,
+                ]);
+            },
+        ],
+        'singletons' => [],
+    ],
     'components' => [
         'commandBus' => [
             'class' => 'trntv\bus\CommandBus',
@@ -22,6 +35,7 @@ $config = [
                     'app\bus\commands\ChangePasswordCommand' => 'app\bus\handlers\ChangePasswordHandler',
                     'app\bus\commands\AddProductCommand' => 'app\bus\handlers\AddProductHandler',
                     'app\bus\commands\EditProductCommand' => 'app\bus\handlers\EditProductHandler',
+                    'app\bus\commands\SendEmailCommand' => 'app\bus\handlers\SendEmailHandler',
                 ],
             ],
         ],
@@ -34,10 +48,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,
-        ],
+        'mailer' => [],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

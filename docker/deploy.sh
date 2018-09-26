@@ -19,6 +19,7 @@ ssh root@$TARGET_HOST "docker run --name 1biz --restart always -d -p 3006:80 \
 -e DB_NAME=sassoft \
 -e DB_USER=sassoft_wp \
 -e DB_PASSWORD=$DB_PASSWORD \
+-e SENDGRID_API_KEY=$SENDGRID_API_KEY \
 -e STATSD_HOST=monitoring.sassoft.ru \
 -e STATSD_PORT=8125 \
 -e STATSD_NAMESPACE=1biz \
