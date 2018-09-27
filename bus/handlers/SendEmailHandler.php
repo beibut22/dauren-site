@@ -37,7 +37,7 @@ class SendEmailHandler implements Handler
             ->setSubject($command->subject)
             ->setHtmlBody($command->htmlMessage)
             ->setTextBody($command->message)
-            ->send();
+            ->send(null);
 
         if (!$result) {
             throw new \Exception('Unable to send email, result code: '.$result);
