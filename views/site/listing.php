@@ -3,6 +3,8 @@
 
 use app\models\Category;
 use app\models\Product;
+use yii\widgets\LinkPager;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $latestProducts Product[] */
@@ -30,46 +32,47 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
 
                 <div class="properties">
                     <div class="row">
-
-                        <?php foreach ($latestProducts as $product) { ?>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="property-card card">
-                                    <div class="property-card-header image-box">
-                                        <img src="<?= $product->img1 ?>" alt="" class=""/>
-                                        <div class="budget"><i class="fa fa-star"></i></div>
-                                        <a href="/item/<?= $product->id ?>" class="property-card-hover">
-                                            <img src="assets/img/property-hover-arrow.png" alt="" class="left-icon"/>
-                                            <img src="assets/img/plus.png" alt="" class="center-icon"/>
-                                            <img src="assets/img/icon-notice.png" alt="" class="right-icon"/>
+                        <?= ListView::widget([
+                            'dataProvider' => $latestProducts,
+                            'layout' => "{items}",
+                            'itemView' => function ($model, $key, $index, $widget) {
+                                return "<div class=\"col-md-4 col-sm-6\">
+                                <div class=\"property-card card\">
+                                    <div class=\"property-card-header image-box\">
+                                        <img src=\"".$model->img1."\" alt=\"\" class=\"\"/>
+                                        <div class=\"budget\"><i class=\"fa fa-star\"></i></div>
+                                        <a href=\"/item/".$model->id."\" class=\"property-card-hover\">
+                                            <img src=\"assets/img/property-hover-arrow.png\" alt=\"\" class=\"left-icon\"/>
+                                            <img src=\"assets/img/plus.png\" alt=\"\" class=\"center-icon\"/>
+                                            <img src=\"assets/img/icon-notice.png\" alt=\"\" class=\"right-icon\"/>
                                         </a>
                                     </div>
 
-                                    <div class="property-card-tags">
-                                        <span class="label label-default label-tag-warning">Аренда</span>
+                                    <div class=\"property-card-tags\">
+                                        <span class=\"label label-default label-tag-warning\">".$model->law_type."</span>
                                     </div>
-                                    <div class="property-card-box card-box card-block">
-                                        <h3 class="property-card-title"><a href="/item/<?= $product->id ?>"><?= $product->name ?></a>
+                                    <div class=\"property-card-box card-box card-block\">
+                                        <h3 class=\"property-card-title\"><a href=\"/item/".$model->id."\">".$model->name."</a>
                                         </h3>
-                                        <div class="property-card-descr"><?= $product->description ?>...</div>
-                                        <div class="property-preview-footer  clearfix">
-                                            <div class="property-preview-f-left text-color-primary">
-                                                <span class="property-card-value">
-                                                    <?= $product->price_trade ?> тенге
+                                        <div class=\"property-card-descr\">".$model->description."...</div>
+                                        <div class=\"property-preview-footer  clearfix\">
+                                            <div class=\"property-preview-f-left text-color-primary\">
+                                                <span class=\"property-card-value\">
+                                                    ".$model->price_trade." тенге
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            </div>";
+                            },
+                            'pager' => [],
+                        ]);
+                        ?>
 
                     </div><!-- /.properties -->
                     <nav class="text-center">
-                        <!--                        <ul class="pagination">-->
-                        <!--                            <li class="page-item"><a class="page-link active" href="#">1</a></li>-->
-                        <!--                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-                        <!--                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                        <!--                        </ul>-->
+                        <?= LinkPager::widget(['pagination' => $latestProducts->pagination]); ?>
                     </nav>
                 </div> <!-- /.properties-->
             </div><!-- /.center-content -->
@@ -108,10 +111,12 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                     <option selected value="">Право собственности</option>
                                     <option <?php if (Yii::$app->request->get('law_type') == 'Частная') {
                                         echo 'selected';
-                                    } ?> value="Частная">Частная</option>
+                                    } ?> value="Частная">Частная
+                                    </option>
                                     <option <?php if (Yii::$app->request->get('law_type') == 'Арендованная') {
                                         echo 'selected';
-                                    } ?> value="Арендованная">Арендованная</option>
+                                    } ?> value="Арендованная">Арендованная
+                                    </option>
                                 </select>
                             </div>
 
@@ -120,10 +125,12 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                     <option selected value="-1">Лицензирование</option>
                                     <option <?php if (Yii::$app->request->get('licensed') == '0') {
                                         echo 'selected';
-                                    } ?> value="0">Не требуется</option>
+                                    } ?> value="0">Не требуется
+                                    </option>
                                     <option <?php if (Yii::$app->request->get('licensed') == '1') {
                                         echo 'selected';
-                                    } ?> value="1">Требуется</option>
+                                    } ?> value="1">Требуется
+                                    </option>
                                 </select>
                             </div>
 

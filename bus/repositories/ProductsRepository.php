@@ -49,7 +49,11 @@ class ProductsRepository
         $lawType = '',
         $licensed = -1
     ) {
-        $data = Product::find()->where(['status' => 1])->limit($limit)->orderBy('id DESC');
+        $data = Product::find()->where(['status' => 1])->orderBy('id DESC');
+
+        if ($limit > 0) {
+            $data->limit($limit);
+        }
 
         if ($byCategory > 0) {
             $data->andWhere(['fk_category' => $byCategory]);

@@ -18,6 +18,7 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
         <section class="top-title">
             <ul class="breadcrumb">
                 <li class="item"><a href="/"> Главная </a></li>
+                <li class="item"><a href="/listing"> Объявления</a></li>
                 <li class="item"> <?= $product->name ?> </li>
             </ul>
             <h1 class="h-side-title page-title page-title-big text-color-primary"><?= $product->name ?></h1>
