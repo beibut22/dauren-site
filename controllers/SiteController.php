@@ -68,11 +68,11 @@ class SiteController extends Controller
             $command->subject = 'Запрос по объявлению '.$product->name.' на 1biz.kz';
             $command->phone = $contactForm->phone;
             // Send message
-            $command->message = 'Приветствую, вам поступило новое сообщение по объявлению '.$product->name.' от гостя: ';
+            $command->message = 'Приветствую, \r\nвам поступило новое сообщение по объявлению '.$product->name.' от гостя: ';
             $command->message .= $contactForm->name.'\r\nТелефон: '.$contactForm->phone.' \r\n Email: '.$contactForm->email.'\r\n';
             $command->message .= 'Сообщение:\r\n'.$contactForm->message;
 
-            $command->htmlMessage = 'Приветствую, вам поступило новое сообщение по объявлению: '.$product->name.' от гостя: ';
+            $command->htmlMessage = 'Приветствую, <br>вам поступило новое сообщение по объявлению '.$product->name.' от гостя: ';
             $command->htmlMessage .= $contactForm->name.'<br>Телефон: '.$contactForm->phone.' <br> Email: '.$contactForm->email.'<br>';
             $command->htmlMessage .= 'Сообщение:<br>'.$contactForm->message;
 
