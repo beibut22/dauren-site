@@ -15,6 +15,7 @@ use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\bus\repositories\FavoritesRepository;
 
 class CabinetController extends Controller
 {
@@ -35,7 +36,7 @@ class CabinetController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'profile', 'products', 'favourite', 'add', 'product'],
+                        'actions' => ['index', 'profile', 'products', 'favorite', 'add', 'product'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -118,14 +119,6 @@ class CabinetController extends Controller
 
         }
 
-//        if (Yii::$app->request->isPost) {
-//            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-//            if ($model->upload()) {
-//                // file is uploaded successfully
-//                return;
-//            }
-//        }
-
         $categories = Category::find()->orderBy('name ASC')->all();
         $categories = ArrayHelper::map($categories, 'id', 'name');
 
@@ -165,7 +158,7 @@ class CabinetController extends Controller
 
             Yii::$app->commandBus->handle($command);
             Yii::$app->session->setFlash('success', "Добавлено");
-            $this->redirect('/cabinet/product/'.$product->id);
+            $this->redirect('/cabinet/product/' . $product->id);
         }
 
         $editForm->address = $product->address;
@@ -193,6 +186,12 @@ class CabinetController extends Controller
 
     public function actionFavorite()
     {
-        return $this->render('favorite');
+        $favortiesRepository = new FavoritesRepository();
+        $favorites = $favortiesRepository->findAllByUserId($this->user->id, true);
+
+        $categories = Category::find()->orderBy('name ASC')->all();
+        $categories = ArrayHelper::map($categories, 'id', 'name');
+
+        return $this->render('favorite', ['favorites' => $favorites, 'categories' => $categories]);
     }
 }

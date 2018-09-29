@@ -64,7 +64,7 @@ AppAsset::register($this);
                                 <?php if (!Yii::$app->user->isGuest) { ?>
                                     <li><a href="/cabinet"><i class="fa fa-user"></i> Мой профиль</a></li>
                                     <li><a href="/cabinet/products"><i class="fa fa-list"></i> Мои объявления</a></li>
-                                    <li><a href="/cabinet/favourite"><i class="fa fa-star"></i> Избранное</a></li>
+                                    <li><a href="/cabinet/favorite"><i class="fa fa-star"></i> Избранное</a></li
                                     <li><a href="/logout"><i class="fa fa-power-off"></i> Выйти</a></li>
                                 <?php } else { ?>
                                     <li><a href="/login"><i class="fa fa-power-off"></i> Авторизация</a></li>

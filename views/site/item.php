@@ -84,8 +84,8 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         <li>
                             <span class="list-overview-option">Операция: </span>
                             <span class="list-overview-value"><?php if ($product->product_type == 'sell') {
-                                    echo 'Продажа';
-                                } else echo 'Покупка' ?></span>
+                                                                    echo 'Продажа';
+                                                                } else echo 'Покупка' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Cобственность: </span>
@@ -94,8 +94,8 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         <li>
                             <span class="list-overview-option">Лиценизирование </span>
                             <span class="list-overview-value"><?php if ($product->licensed == 0) {
-                                    echo '-';
-                                } else echo 'Да' ?></span>
+                                                                    echo '-';
+                                                                } else echo 'Да' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Рейтинг</span>
@@ -187,8 +187,8 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         <li>
                             <span class="list-overview-option">Операция: </span>
                             <span class="list-overview-value"><?php if ($product->product_type == 'sell') {
-                                    echo 'Продажа';
-                                } else echo 'Покупка' ?></span>
+                                                                    echo 'Продажа';
+                                                                } else echo 'Покупка' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Cобственность: </span>
@@ -197,8 +197,8 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         <li>
                             <span class="list-overview-option">Лиценизирование </span>
                             <span class="list-overview-value"><?php if ($product->licensed == 0) {
-                                    echo '-';
-                                } else echo 'Да' ?></span>
+                                                                    echo '-';
+                                                                } else echo 'Да' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Активы: </span>
@@ -216,7 +216,16 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                             <span class="list-overview-option">Цена (торг):</span>
                             <span class="list-overview-value"><strong><?= $product->price_trade ?> тенге</strong></span>
                         </li>
+                        <li>
+                            <span class="list-overview-option"></span>
+                            <span class="list-overview-value">
+                                <form method="post">
+                                <input type="submit" name='favorite_button' class="btn btn-info" value="В избранное"/>
+                                </form>
+                            </span>
+                        </li>
                     </ul>
+                    
                 </div><!-- /. widget-OVERVIEW -->
 
                 <!--                <div class="widget widget-box box-container widget-agent">-->
@@ -242,7 +251,8 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                                 <a href="/login">Авторизуйтесь</a>, чтобы написать
                                 <br>&nbsp;
                             </div>
-                        <?php } else { ?>
+                        <?php 
+                    } else { ?>
                             <?php $form = \yii\widgets\ActiveForm::begin([
                                 'fieldConfig' => [
                                     'template' => "<div class='form-group'> {input} {error}</div>\n",
@@ -250,8 +260,10 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                                 'options' => ['class' => 'form-additional'],
                             ]); ?>
                             <?= $form->field($contactForm, 'name')->textInput(['placeholder' => 'Ваше имя']) ?>
-                            <?= $form->field($contactForm,
-                                'phone')->textInput(['placeholder' => 'Контактный телефон']) ?>
+                            <?= $form->field(
+                                $contactForm,
+                                'phone'
+                            )->textInput(['placeholder' => 'Контактный телефон']) ?>
                             <?= $form->field($contactForm, 'email')->textInput(['placeholder' => 'Email']) ?>
                             <?= $form->field($contactForm, 'message')->textInput(['placeholder' => 'Сообщение']) ?>
 
@@ -261,7 +273,8 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                                        value="Отправить"/>
                             </div>
                             <?php \yii\widgets\ActiveForm::end(); ?>
-                        <?php } ?>
+                        <?php 
+                    } ?>
                     </div>
                 </div><!-- /.widget-form-->
             </div>
