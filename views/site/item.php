@@ -3,13 +3,15 @@
 
 use app\models\Product;
 use app\models\SendMailForm;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $product Product */
 /* @var $contactForm SendMailForm */
+/* @var $inFavorite bool */
 
 
-$this->title = 'Объявление. 1biz.kz - продажа готового бизнеса в Казахстане';
+$this->title = 'Объявление: ' . $product->name . '. 1biz.kz - продажа готового бизнеса в Казахстане';
 ?>
 <div class="top-box-mask"></div>
 </header><!-- /.header-->
@@ -219,9 +221,19 @@ $this->title = 'Объявление. 1biz.kz - продажа готового 
                         <li>
                             <span class="list-overview-option"></span>
                             <span class="list-overview-value">
+                            <?php if (!$inFavorite) { ?>    
                                 <form method="post">
-                                <input type="submit" name='favorite_button' class="btn btn-info" value="В избранное"/>
+                                        <input type="hidden" name="favorite_added" value="1">
+                                        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []) ?>
+                                        <input type="submit" name='favorite_button' class="btn btn-info" value="В избранное"/>
                                 </form>
+                            <?php }else{ ?>
+                                <form method="post">
+                                        <input type="hidden" name="favorite_removed" value="1">
+                                        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []) ?>
+                                        <input type="submit" name='favorite_button' class="btn btn-warning" value="Убрать из избранного"/>
+                                </form>
+                            <?php } ?>    
                             </span>
                         </li>
                     </ul>

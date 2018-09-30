@@ -36,6 +36,8 @@ $config = [
                     'app\bus\commands\AddProductCommand' => 'app\bus\handlers\AddProductHandler',
                     'app\bus\commands\EditProductCommand' => 'app\bus\handlers\EditProductHandler',
                     'app\bus\commands\SendEmailCommand' => 'app\bus\handlers\SendEmailHandler',
+                    'app\bus\commands\AddFavoriteCommand' => 'app\bus\handlers\AddFavoriteHandler',
+                    'app\bus\commands\RemoveFavoriteCommand' => 'app\bus\handlers\RemoveFavoriteHandler',
                 ],
             ],
         ],
