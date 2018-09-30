@@ -41,7 +41,10 @@ class ProductFactory
         $priceProfit,
         $priceTrade,
         $productType,
-        $zip
+        $zip,
+        $img1,
+        $img2,
+        $img3
     ) {
         return new Product([
             'fk_user' => $userId,
@@ -60,6 +63,9 @@ class ProductFactory
             'price_trade' => $priceTrade,
             'product_type' => $productType,
             'zip' => $zip,
+            'img1' => $img1,
+            'img2' => $img2,
+            'img3' => $img3,
         ]);
     }
 

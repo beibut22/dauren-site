@@ -16,6 +16,8 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use app\bus\repositories\FavoritesRepository;
+use app\bus\commands\UploadFileCommand;
+use yii\web\UploadedFile;
 
 class CabinetController extends Controller
 {
@@ -94,7 +96,41 @@ class CabinetController extends Controller
         $form = new AddForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+
             $command = new AddProductCommand();
+
+            $uploadCommand = new UploadFileCommand();
+            $uploadCommand->imageFile = UploadedFile::getInstance($form, 'imgFile1');
+            $uploadCommand->fileName = sha1($uploadCommand->imageFile->baseName . time()) . '.' . $uploadCommand->imageFile->extension;
+            $uploadCommand->uploadStrategy = getenv('STORAGE_STRATEGY');
+            $uploadCommand->uploadBucket = getenv('STORAGE_BUCKET');
+            $command->img1 = getenv('STORAGE_PUBLIC_URL') . "/" . $uploadCommand->fileName;
+            Yii::$app->commandBus->handle($uploadCommand);
+
+            $uploadCommand = new UploadFileCommand();
+            $uploadCommand->imageFile = UploadedFile::getInstance($form, 'imgFile2');
+
+            if ($uploadCommand->imageFile) {
+                sleep(1);
+                $uploadCommand->fileName = sha1($uploadCommand->imageFile->baseName . time()) . '.' . $uploadCommand->imageFile->extension;
+                $uploadCommand->uploadStrategy = getenv('STORAGE_STRATEGY');
+                $uploadCommand->uploadBucket = getenv('STORAGE_BUCKET');
+                $command->img2 = getenv('STORAGE_PUBLIC_URL') . "/" . $uploadCommand->fileName;
+                Yii::$app->commandBus->handle($uploadCommand);
+            }
+
+            $uploadCommand = new UploadFileCommand();
+            $uploadCommand->imageFile = UploadedFile::getInstance($form, 'imgFile3');
+
+            if ($uploadCommand->imageFile) {
+                sleep(1);
+                $uploadCommand->fileName = sha1($uploadCommand->imageFile->baseName . time()) . '.' . $uploadCommand->imageFile->extension;
+                $uploadCommand->uploadStrategy = getenv('STORAGE_STRATEGY');
+                $uploadCommand->uploadBucket = getenv('STORAGE_BUCKET');
+                $command->img3 = getenv('STORAGE_PUBLIC_URL') . "/" . $uploadCommand->fileName;
+                Yii::$app->commandBus->handle($uploadCommand);
+            }
+
             $command->userId = $this->user->id;
             $command->address = $form->address;
             $command->categoryId = $form->categoryId;
@@ -111,7 +147,6 @@ class CabinetController extends Controller
             $command->priceTrade = $form->priceTrade;
             $command->productType = $form->productType;
             $command->zip = $form->zip;
-
 
             Yii::$app->commandBus->handle($command);
             Yii::$app->session->setFlash('success', "Добавлено");

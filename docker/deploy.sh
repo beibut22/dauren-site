@@ -20,6 +20,14 @@ ssh root@$TARGET_HOST "docker run --name 1biz --restart always -d -p 3006:80 \
 -e DB_USER=sassoft_wp \
 -e DB_PASSWORD=$DB_PASSWORD \
 -e SENDGRID_API_KEY=$SENDGRID_API_KEY \
+-e STORAGE_REGION=ams3 \
+-e STORAGE_ENDPOINT=https://ams3.digitaloceanspaces.com \
+-e STORAGE_BUCKET=sassoft \
+-e STORAGE_PATH=1biz/ \
+-e STORAGE_STRATEGY=DO \
+-e STORAGE_PUBLIC_URL=https://sassoft.ams3.digitaloceanspaces.com/1biz \
+-e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+-e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
 -e STATSD_HOST=monitoring.sassoft.ru \
 -e STATSD_PORT=8125 \
 -e STATSD_NAMESPACE=1biz \

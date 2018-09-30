@@ -36,4 +36,10 @@ class AddProductCommand
 
     public $description;
 
+    public $img1;
+
+    public $img2;
+
+    public $img3;
+
 }

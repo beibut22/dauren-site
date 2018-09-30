@@ -32,10 +32,27 @@ class AddProductHandler implements Handler
      */
     public function handle($command)
     {
-        $product = $this->productFactory->create($command->userId, $command->address, $command->categoryId,
-            $command->city, $command->country, $command->description, $command->lawType, $command->licensed,
-            $command->name, $command->perspectives, $command->price, $command->priceActive, $command->priceProfit,
-            $command->priceTrade, $command->productType, $command->zip);
+        $product = $this->productFactory->create(
+            $command->userId,
+            $command->address,
+            $command->categoryId,
+            $command->city,
+            $command->country,
+            $command->description,
+            $command->lawType,
+            $command->licensed,
+            $command->name,
+            $command->perspectives,
+            $command->price,
+            $command->priceActive,
+            $command->priceProfit,
+            $command->priceTrade,
+            $command->productType,
+            $command->zip,
+            $command->img1,
+            $command->img2,
+            $command->img3
+        );
 
         $this->productsRepository->save($product);
     }

@@ -1,9 +1,11 @@
 <?php
 
 use wadeshuler\sendgrid\Mailer;
+use Aws\S3\S3Client;
+use Aws\Credentials\CredentialProvider;
 
-$params = require __DIR__.'/params.php';
-$db = require __DIR__.'/db.php';
+$params = require __DIR__ . '/params.php';
+$db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => '1biz',
@@ -23,6 +25,15 @@ $config = [
                     'useFileTransport' => false,
                 ]);
             },
+            'Aws\S3\S3Client' => function ($container, $params, $config) {            
+                $provider = CredentialProvider::env();
+                return new S3Client([
+                    'version' => 'latest',
+                    'region' => getenv('STORAGE_REGION'),
+                    'endpoint' => getenv('STORAGE_ENDPOINT'),
+                    'credentials' => $provider,
+                ]);        
+            },
         ],
         'singletons' => [],
     ],
@@ -38,6 +49,7 @@ $config = [
                     'app\bus\commands\SendEmailCommand' => 'app\bus\handlers\SendEmailHandler',
                     'app\bus\commands\AddFavoriteCommand' => 'app\bus\handlers\AddFavoriteHandler',
                     'app\bus\commands\RemoveFavoriteCommand' => 'app\bus\handlers\RemoveFavoriteHandler',
+                    'app\bus\commands\UploadFileCommand' => 'app\bus\handlers\UploadFileHandler',
                 ],
             ],
         ],

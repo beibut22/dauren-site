@@ -42,6 +42,9 @@ class AddProductHandlerTest extends Unit
         $command->price = 1003;
         $command->priceTrade = 1004;
         $command->description = 'Some description';
+        $command->img1 = 'https://';
+        $command->img2 = '';
+        $command->img3 = '';
 
         $product = $this->getMockBuilder(Product::class)->setMethods(['save', 'attributes'])->getMock();
         $product->method('save')->willReturn(true);
@@ -65,6 +68,9 @@ class AddProductHandlerTest extends Unit
             $command->priceTrade,
             $command->productType,
             $command->zip,
+            $command->img1,
+            $command->img2,
+            $command->img3,
         ])->once()->andReturn($product);
 
         $productsRepo = Mockery::mock(ProductsRepository::class);

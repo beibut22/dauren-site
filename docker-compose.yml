@@ -12,6 +12,16 @@ services:
     - ENVIRONMENT=dev
     - STATSD_HOST=localhost
     - STATSD_PORT=8125
+    
+    - STORAGE_REGION=ams3
+    - STORAGE_ENDPOINT=https://ams3.digitaloceanspaces.com
+    - STORAGE_BUCKET=sassoft
+    - STORAGE_PATH=1biz/
+    - STORAGE_STRATEGY=DO
+    - STORAGE_PUBLIC_URL=https://sassoft.ams3.digitaloceanspaces.com/1biz
+    
+    - AWS_SECRET_ACCESS_KEY=    
+    - AWS_ACCESS_KEY_ID=
     ports:
     - "5003:80"
     volumes:

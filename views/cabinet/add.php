@@ -20,7 +20,7 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                         <li class="item"> Добавить объявление</li>
                     </ul>
                     <h1 class="h-side-title page-title page-title-big text-color-primary">Добавить объявление</h1>
-                    <?php if (Yii::$app->session->hasFlash('success')): ?>
+                    <?php if (Yii::$app->session->hasFlash('success')) : ?>
                         <br>
                         <div class="alert alert-success">
                             <?= Yii::$app->session->getFlash('success') ?>
@@ -59,11 +59,15 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                         'Алматы' => 'Алматы',
                     ]) ?>
 
-                    <?= $form->field($addForm,
-                        'address')->textInput(['placeholder' => 'Добавьте адрес где находится объект']) ?>
+                    <?= $form->field(
+                        $addForm,
+                        'address'
+                    )->textInput(['placeholder' => 'Добавьте адрес где находится объект']) ?>
 
-                    <?= $form->field($addForm,
-                        'zip')->textInput(['placeholder' => 'Добавьте почтовый индекс объекта']) ?>
+                    <?= $form->field(
+                        $addForm,
+                        'zip'
+                    )->textInput(['placeholder' => 'Добавьте почтовый индекс объекта']) ?>
 
                     <?= $form->field($addForm, 'lawType')->dropDownList([
                         'Частная' => 'Частная',
@@ -75,27 +79,29 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                         '1' => 'Лицензированная',
                     ]) ?>
 
-                    <?= $form->field($addForm,
-                        'priceActive')->textInput(['placeholder' => 'Стоимость собственных активов объекта в тенге']) ?>
+                    <?= $form->field(
+                        $addForm,
+                        'priceActive'
+                    )->textInput(['placeholder' => 'Стоимость собственных активов объекта в тенге']) ?>
 
-                    <?= $form->field($addForm,
-                        'priceProfit')->textInput(['placeholder' => 'Приблизительная доходность объекта']) ?>
+                    <?= $form->field(
+                        $addForm,
+                        'priceProfit'
+                    )->textInput(['placeholder' => 'Приблизительная доходность объекта']) ?>
 
                     <?= $form->field($addForm, 'perspectives')->textInput() ?>
 
                     <?= $form->field($addForm, 'price')->textInput(['placeholder' => 'Цена объекта без торгов']) ?>
 
-                    <?= $form->field($addForm,
-                        'priceTrade')->textInput(['placeholder' => 'Возможная цена объекта при торге']) ?>
+                    <?= $form->field($addForm, 'priceTrade')->textInput(['placeholder' => 'Возможная цена объекта при торге']) ?>
 
-                    <?= $form->field($addForm,
-                        'description')->textarea(['placeholder' => 'Добавьте словестное описание объекта']) ?>
+                    <?= $form->field($addForm, 'description')->textarea(['placeholder' => 'Добавьте словестное описание объекта']) ?>
 
-<!--                    --><?//= $form->field($addForm, 'imgFile1')->fileInput() ?>
-<!---->
-<!--                    --><?//= $form->field($addForm, 'imgFile2')->fileInput() ?>
-<!---->
-<!--                    --><?//= $form->field($addForm, 'imgFile3')->fileInput() ?>
+                    <?= $form->field($addForm, 'imgFile1')->fileInput() ?>
+
+                    <?= $form->field($addForm, 'imgFile2')->fileInput() ?>
+
+                    <?= $form->field($addForm, 'imgFile3')->fileInput() ?>
 
                     <div class="control-group">
                         <div class="controls">
