@@ -1,6 +1,6 @@
 <?php
 
-namespace app\tests\unit\commands;
+namespace app\tests\unit\handlers;
 
 use Codeception\Test\Unit;
 use Mockery;

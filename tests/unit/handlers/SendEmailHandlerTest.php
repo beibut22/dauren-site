@@ -1,6 +1,6 @@
 <?php
 
-namespace app\tests\unit\commands;
+namespace app\tests\unit\handlers;
 
 use app\bus\commands\SendEmailCommand;
 use app\bus\handlers\SendEmailHandler;

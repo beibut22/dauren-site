@@ -2,7 +2,6 @@
 
 namespace app\tests\unit\commands;
 
-
 use app\bus\commands\AddProductCommand;
 use Codeception\Test\Unit;
 

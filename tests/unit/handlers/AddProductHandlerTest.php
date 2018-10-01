@@ -1,6 +1,6 @@
 <?php
 
-namespace app\tests\unit\commands;
+namespace app\tests\unit\handlers;
 
 use app\bus\commands\AddProductCommand;
 use app\bus\factories\ProductFactory;
