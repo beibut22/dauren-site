@@ -15,9 +15,9 @@ ssh root@$TARGET_HOST "docker run --name 1biz --restart always -d -p 3006:80 \
 -e LETSENCRYPT_HOST=1biz.kz \
 -e LETSENCRYPT_EMAIL=sassoftinc@gmail.com \
 -e ENVIRONMENT=production \
--e DB_HOST=138.68.75.78 \
--e DB_NAME=sassoft \
--e DB_USER=sassoft_wp \
+-e DB_HOST=139.59.145.217 \
+-e DB_NAME=1biz_db \
+-e DB_USER=root \
 -e DB_PASSWORD=$DB_PASSWORD \
 -e SENDGRID_API_KEY=$SENDGRID_API_KEY \
 -e STORAGE_REGION=ams3 \
