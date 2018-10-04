@@ -150,7 +150,7 @@ class CabinetController extends Controller
 
             Yii::$app->commandBus->handle($command);
             Yii::$app->session->setFlash('success', "Добавлено");
-            $this->redirect('/cabinet/products');
+            return $this->redirect(\Yii::$app->request->getReferrer());
 
         }
 

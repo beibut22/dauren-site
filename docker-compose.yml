@@ -12,7 +12,9 @@ services:
     - ENVIRONMENT=dev
     - STATSD_HOST=localhost
     - STATSD_PORT=8125
-    
+
+    - SENDGRID_API_KEY=some_key
+
     - STORAGE_REGION=ams3
     - STORAGE_ENDPOINT=https://ams3.digitaloceanspaces.com
     - STORAGE_BUCKET=sassoft

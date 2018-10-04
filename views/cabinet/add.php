@@ -20,6 +20,7 @@ $this->title = 'Добавить объявление. 1biz.kz - продажа 
                         <li class="item"> Добавить объявление</li>
                     </ul>
                     <h1 class="h-side-title page-title page-title-big text-color-primary">Добавить объявление</h1>
+
                     <?php if (Yii::$app->session->hasFlash('success')) : ?>
                         <br>
                         <div class="alert alert-success">

@@ -11,7 +11,7 @@ use yii\helpers\Html;
 /* @var $inFavorite bool */
 
 
-$this->title = 'Объявление: ' . $product->name . '. 1biz.kz - продажа готового бизнеса в Казахстане';
+$this->title = 'Объявление: '.$product->name.'. 1biz.kz - продажа готового бизнеса в Казахстане';
 ?>
 <div class="top-box-mask"></div>
 </header><!-- /.header-->
@@ -24,6 +24,14 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                 <li class="item"> <?= $product->name ?> </li>
             </ul>
             <h1 class="h-side-title page-title page-title-big text-color-primary"><?= $product->name ?></h1>
+
+            <?php if (Yii::$app->session->hasFlash('success')): ?>
+                <br>&nbsp;
+                <div class="alert alert-success">
+                    <?= Yii::$app->session->getFlash('success') ?>
+                </div>
+            <?php endif; ?>
+
         </section> <!-- /. content-header -->
         <div class="row">
             <div class="col-md-9">
@@ -86,8 +94,8 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                         <li>
                             <span class="list-overview-option">Операция: </span>
                             <span class="list-overview-value"><?php if ($product->product_type == 'sell') {
-                                                                    echo 'Продажа';
-                                                                } else echo 'Покупка' ?></span>
+                                    echo 'Продажа';
+                                } else echo 'Покупка' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Cобственность: </span>
@@ -96,8 +104,8 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                         <li>
                             <span class="list-overview-option">Лиценизирование </span>
                             <span class="list-overview-value"><?php if ($product->licensed == 0) {
-                                                                    echo '-';
-                                                                } else echo 'Да' ?></span>
+                                    echo '-';
+                                } else echo 'Да' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Рейтинг</span>
@@ -189,8 +197,8 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                         <li>
                             <span class="list-overview-option">Операция: </span>
                             <span class="list-overview-value"><?php if ($product->product_type == 'sell') {
-                                                                    echo 'Продажа';
-                                                                } else echo 'Покупка' ?></span>
+                                    echo 'Продажа';
+                                } else echo 'Покупка' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Cобственность: </span>
@@ -199,8 +207,8 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                         <li>
                             <span class="list-overview-option">Лиценизирование </span>
                             <span class="list-overview-value"><?php if ($product->licensed == 0) {
-                                                                    echo '-';
-                                                                } else echo 'Да' ?></span>
+                                    echo '-';
+                                } else echo 'Да' ?></span>
                         </li>
                         <li>
                             <span class="list-overview-option">Активы: </span>
@@ -221,23 +229,27 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                         <li>
                             <span class="list-overview-option"></span>
                             <span class="list-overview-value">
-                            <?php if (!$inFavorite) { ?>    
+                            <?php if (!$inFavorite) { ?>
                                 <form method="post">
                                         <input type="hidden" name="favorite_added" value="1">
-                                        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []) ?>
-                                        <input type="submit" name='favorite_button' class="btn btn-info" value="В избранное"/>
+                                        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam,
+                                            \Yii::$app->getRequest()->getCsrfToken(), []) ?>
+                                        <input type="submit" name='favorite_button' class="btn btn-info"
+                                               value="В избранное"/>
                                 </form>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <form method="post">
                                         <input type="hidden" name="favorite_removed" value="1">
-                                        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []) ?>
-                                        <input type="submit" name='favorite_button' class="btn btn-warning" value="Убрать из избранного"/>
+                                        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam,
+                                            \Yii::$app->getRequest()->getCsrfToken(), []) ?>
+                                        <input type="submit" name='favorite_button' class="btn btn-warning"
+                                               value="Убрать из избранного"/>
                                 </form>
                             <?php } ?>    
                             </span>
                         </li>
                     </ul>
-                    
+
                 </div><!-- /. widget-OVERVIEW -->
 
                 <!--                <div class="widget widget-box box-container widget-agent">-->
@@ -263,8 +275,8 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                                 <a href="/login">Авторизуйтесь</a>, чтобы написать
                                 <br>&nbsp;
                             </div>
-                        <?php 
-                    } else { ?>
+                            <?php
+                        } else { ?>
                             <?php $form = \yii\widgets\ActiveForm::begin([
                                 'fieldConfig' => [
                                     'template' => "<div class='form-group'> {input} {error}</div>\n",
@@ -285,8 +297,8 @@ $this->title = 'Объявление: ' . $product->name . '. 1biz.kz - прод
                                        value="Отправить"/>
                             </div>
                             <?php \yii\widgets\ActiveForm::end(); ?>
-                        <?php 
-                    } ?>
+                            <?php
+                        } ?>
                     </div>
                 </div><!-- /.widget-form-->
             </div>
