@@ -89,7 +89,7 @@ $config = [
 
                 'cabinet/product/<id:\w+>' => 'cabinet/product',
 
-                'admin' => 'admin/index',
+                'admin' => 'adminer/main/index',
             ],
         ],
         'view' => [
