@@ -42,7 +42,7 @@ AdminAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url' => ['/admin']],
             ['label' => 'Объявления', 'url' => ['/adminer/product/index']],
-//            ['label' => 'Пользователи', 'url' => ['/adminer/user/index']],
+            ['label' => 'Пользователи', 'url' => ['/adminer/user/index']],
 //            ['label' => 'Категории', 'url' => ['/adminer/category/index']],
 //            ['label' => 'Логи', 'url' => ['/adminer/log/index']],
             ['label' => 'Выйти', 'url' => ['/user/default/logout'], 'linkOptions' => ['data-method' => 'post']],
