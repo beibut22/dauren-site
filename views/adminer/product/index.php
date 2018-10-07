@@ -26,76 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 'id',
-                'fk_user',
-                'fk_category',
+                'user.username',
+                'category.name',
                 'name',
                 'city',
-//                'id' => [
-//                    'attribute' => 'id',
-//                    'label' => '#',
-//                    'format' => 'raw',
-//                    'value' => function ($data) {
-//                        return "<a target='_blank' href='/order/".$data->hash."'>".$data->id."</a>";
-//                    },
-//                ],
-//                'date' => [
-//                    'attribute' => 'date',
-//                    'format' => 'raw',
-//                    'value' => function ($data) {
-//                        return date("d.m в H:i", strtotime($data->date));
-//                    },
-//                ],
-//                'curin' => [
-//                    'attribute' => 'curin',
-//                    'label' => 'Данные заявки',
-//                    'format' => 'raw',
-//                    'value' => function ($data) {
-//                        return $data->amountin." ".$data->curin." <br> ".$data->amountout." ".$data->curout;
-//                    },
-//                ],
-//                'profit' => [
-//                    'attribute' => 'profit',
-//                    'format' => 'raw',
-//                    'value' => function ($data) {
-//                        if ($data->profit) {
-//                            return $data->profit;
-//                        } else {
-//                            return '-';
-//                        }
-//                    },
-//                ],
-//                'walletout' => [
-//                    'attribute' => 'walletout',
-//                    'format' => 'raw',
-//                    'value' => function ($data) {
-//                        $str = mb_substr($data->walletout, 0, 20, 'UTF-8');
-//                        if (strlen($data->walletout) > 20) {
-//                            $str .= '...';
-//                        }
-//
-//                        return $str;
-//                    },
-//                ],
-//                'email:email',
-//                'info' => [
-//                    'attribute' => 'info',
-//                    'format' => 'raw',
-//                    'value' => function ($data) {
-//
-//                        $info = $data->info." ".$data->info2;
-//
-//                        if (in_array($data->curin, ['btc', 'ltc', 'eth', 'xmr', 'xrp'])) {
-//                            $info = $data->identity;
-//                        }
-//
-//                        $str = mb_substr($info, 0, 20, 'UTF-8');
-//                        if (strlen($info) > 20) {
-//                            $str .= '...';
-//                        }
-//
-//                        return $str;
-//                    },
-//                ],
                 'status' => [
                     'attribute' => 'status',
                     'format' => 'raw',
@@ -105,6 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
 
                         return '<span class="text-info">Отображается</span>';
+                    },
+                ],
+                'created_at' => [
+                    'attribute' => 'created_at',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return date("d.m в H:i", strtotime($data->created_at));
                     },
                 ],
                 ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],

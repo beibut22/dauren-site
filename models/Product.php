@@ -63,4 +63,32 @@ class Product extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'fk_user']);
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'fk_user' => 'Пользователь',
+            'fk_category' => 'Категория',
+            'name' => 'Название',
+            'product_type' => 'Операция',
+            'country' => 'Страна',
+            'city' => 'Город',
+            'address' => 'Адрес',
+            'zip' => 'Индекс',
+            'law_type' => 'Право собственности',
+            'licensed' => 'Вид деятельности',
+            'price_active' => 'Стоимость собств. активов',
+            'price_profit' => 'Приблиз. доход',
+            'perspectives' => 'Перспективы роста дохода',
+            'price' => 'Продажная цена',
+            'price_trade' => 'Продажная цена (торг)',
+            'description' => 'Описание',
+            'img1' => 'Картинка 1',
+            'img2' => 'Картинка 2',
+            'img3' => 'Картинка 3',
+            'created_at' => 'Создано',
+            'status' => 'Статус',
+        ];
+    }
+
+
 }

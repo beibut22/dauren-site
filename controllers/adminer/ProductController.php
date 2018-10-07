@@ -3,9 +3,11 @@
 namespace app\controllers\adminer;
 
 
+use app\models\Category;
 use app\models\Product;
 use app\models\search\ProductSearch;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 
@@ -36,7 +38,10 @@ class ProductController extends MainController
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', ['model' => $model]);
+            $categories = Category::find()->orderBy('name ASC')->all();
+            $categories = ArrayHelper::map($categories, 'id', 'name');
+
+            return $this->render('create', ['model' => $model, 'categories' => $categories]);
         }
     }
 
@@ -49,7 +54,10 @@ class ProductController extends MainController
 
             return $this->redirect(['index']);
         } else {
-            return $this->render('update', ['model' => $model]);
+            $categories = Category::find()->orderBy('name ASC')->all();
+            $categories = ArrayHelper::map($categories, 'id', 'name');
+
+            return $this->render('update', ['model' => $model, 'categories' => $categories]);
         }
     }
 

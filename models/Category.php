@@ -10,7 +10,6 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property integer $name
- * @property integer $history_flag
  * @property integer created_at
  * @property integer updated_at
  */
@@ -28,5 +27,11 @@ class Category extends ActiveRecord
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'name' => 'Название категории',
+        ];
+    }
 
 }
