@@ -31,6 +31,7 @@ class Category extends ActiveRecord
     {
         return [
             'name' => 'Название категории',
+            'created_at' => 'Создано',
         ];
     }
 
