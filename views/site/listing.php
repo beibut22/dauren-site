@@ -36,6 +36,14 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                             'dataProvider' => $latestProducts,
                             'layout' => "{items}",
                             'itemView' => function ($model, $key, $index, $widget) {
+                                $max_length = 100;
+
+                                $s = $model->description;
+                                if (strlen($model->description) > $max_length)
+                                {
+                                    $offset = ($max_length - 3) - strlen($model->description);
+                                    $s = substr($model->description, 0, strrpos($model->description, ' ', $offset)) . '...';
+                                }
                                 return "<div class=\"col-md-4 col-sm-6\">
                                 <div class=\"property-card card\">
                                     <div class=\"property-card-header image-box\">
@@ -54,7 +62,7 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                     <div class=\"property-card-box card-box card-block\">
                                         <h3 class=\"property-card-title\"><a href=\"/item/".$model->id."\">".$model->name."</a>
                                         </h3>
-                                        <div class=\"property-card-descr\">".$model->description."...</div>
+                                        <div class=\"property-card-descr\">".$s."</div>
                                         <div class=\"property-preview-footer  clearfix\">
                                             <div class=\"property-preview-f-left text-color-primary\">
                                                 <span class=\"property-card-value\">
