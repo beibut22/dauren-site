@@ -44,12 +44,16 @@ $this->title = 'Объявление: '.$product->name.'. 1biz.kz - продаж
                                 <div class="item active">
                                     <img src="<?= $product->img1 ?>" alt="<?= $product->name ?>"/>
                                 </div>
+                                <?php if ($product->img2){ ?>
                                 <div class="item">
                                     <img src="<?= $product->img2 ?>" alt="<?= $product->name ?>"/>
                                 </div>
+                                <?php } ?>
+                                <?php if ($product->img3){ ?>
                                 <div class="item">
                                     <img src="<?= $product->img3 ?>" alt="<?= $product->name ?>"/>
                                 </div>
+                                <?php } ?>
                             </div>
                             <!-- Previous/Next controls -->
                             <a class="left carousel-control" href="#property-slider" role="button" data-slide="prev">
@@ -143,7 +147,7 @@ $this->title = 'Объявление: '.$product->name.'. 1biz.kz - продаж
                                                           data-src="<?= $product->img1 ?>" alt=""
                                                           class=""/></div>
                         </li>
-
+                        <?php if ($product->img2){ ?>
                         <li class="col-sm-4">
                             <a data-gallery="gallery" href="<?= $product->img2 ?>" title=""
                                download="<?= $product->img2 ?>" class="preview show-icon">
@@ -153,7 +157,9 @@ $this->title = 'Объявление: '.$product->name.'. 1biz.kz - продаж
                                                           data-src="<?= $product->img2 ?>" alt=""
                                                           class=""/></div>
                         </li>
+                        <?php } ?>
 
+                        <?php if ($product->img3){ ?>
                         <li class="col-sm-4">
                             <a data-gallery="gallery" href="<?= $product->img3 ?>" title=""
                                download="<?= $product->img3 ?>" class="preview show-icon">
@@ -163,6 +169,7 @@ $this->title = 'Объявление: '.$product->name.'. 1biz.kz - продаж
                                                           data-src="<?= $product->img3 ?>" alt=""
                                                           class=""/></div>
                         </li>
+                        <?php } ?>
                     </ul>
                 </div><!-- /. widget-gallery -->
             </div><!-- /.center-content -->

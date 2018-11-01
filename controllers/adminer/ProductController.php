@@ -49,7 +49,9 @@ class ProductController extends MainController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $data = Yii::$app->request->post('Product');
+            $model->status = intval($data['status']);
             $model->save();
 
             return $this->redirect(['index']);
