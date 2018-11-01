@@ -80,7 +80,7 @@ class ProductsRepository
             $provider = new ActiveDataProvider([
                 'query' => $data,
                 'pagination' => [
-                    'pageSize' => 25,
+                    'pageSize' => 15,
                 ],
                 'sort' => [
                     'defaultOrder' => [
