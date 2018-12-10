@@ -111,7 +111,7 @@ AppAsset::register($this);
                                             <a class="nav-item" href="/listing">Объявления</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-item" href="#">Контакты</a>
+                                            <a class="nav-item" href="/cabinet/add">Добавить объявление</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -138,7 +138,7 @@ AppAsset::register($this);
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="title">
-                            <h4>Контакты</h4>
+                            <h4>Служба поддержки портала</h4>
                         </div>
                         <ul class="list list-contact  list-news">
                             <li>Казахстан,
@@ -146,7 +146,7 @@ AppAsset::register($this);
                                 1029 Алматы</li>
                             <li><i class="fa fa-phone"></i> +385 (0)1 123 321</li>
                             <li><i class="fa fa-phone"></i>  +385 (0)1 123 322</li>
-                            <li><i class="fa fa-envelope"></i>  info@1biz.kz</li>
+                            <li><i class="fa fa-envelope"></i>  admin@1biz.kz</li>
                         </ul>
                     </div>
 

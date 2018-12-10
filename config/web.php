@@ -1,14 +1,15 @@
 <?php
 
-use wadeshuler\sendgrid\Mailer;
-use Aws\S3\S3Client;
 use Aws\Credentials\CredentialProvider;
+use Aws\S3\S3Client;
+use wadeshuler\sendgrid\Mailer;
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$params = require __DIR__.'/params.php';
+$db = require __DIR__.'/db.php';
 
 $config = [
     'id' => '1biz',
+    'name' => '1biz.kz',
     'sourceLanguage' => 'ru',
     'language' => 'ru',
     'basePath' => dirname(__DIR__),
@@ -25,14 +26,15 @@ $config = [
                     'useFileTransport' => false,
                 ]);
             },
-            'Aws\S3\S3Client' => function ($container, $params, $config) {            
+            'Aws\S3\S3Client' => function ($container, $params, $config) {
                 $provider = CredentialProvider::env();
+
                 return new S3Client([
                     'version' => 'latest',
                     'region' => getenv('STORAGE_REGION'),
                     'endpoint' => getenv('STORAGE_ENDPOINT'),
                     'credentials' => $provider,
-                ]);        
+                ]);
             },
         ],
         'singletons' => [],
@@ -62,7 +64,9 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [],
+        'mailer' => [
+            'class' => 'wadeshuler\sendgrid\Mailer',
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -107,8 +111,11 @@ $config = [
             'admins' => ['admin'],
             'enableConfirmation' => false,
             'urlRules' => [],
-            'controllerMap' => [
-//                'registration' => 'app\controllers\user\RegistrationController',
+            'controllerMap' => [],
+            'mailer' => [
+                'sender' => ['admin@1biz.kz' => '1biz Admin'],
+                'welcomeSubject' => 'Добро пожаловать на 1biz.kz',
+                'recoverySubject' => 'Восстановление доступа',
             ],
         ],
     ],

@@ -66,7 +66,7 @@ $this->title = 'Объявления. 1biz.kz - продажа готового 
                                         <div class=\"property-preview-footer  clearfix\">
                                             <div class=\"property-preview-f-left text-color-primary\">
                                                 <span class=\"property-card-value\">
-                                                    ".$model->price_trade." тенге
+                                                    ".number_format($model->price_trade, 0, '.', ' ')." тенге
                                                 </span>
                                             </div>
                                         </div>
