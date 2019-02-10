@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: 1biz
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/issuer: "letsencrypt-prod"
+    certmanager.k8s.io/acme-challenge-type: http01
+spec:
+  tls:
+    - hosts:
+      - 1biz.kz
+      secretName: prod-1biz-letsencrypt
+  rules:
+    - host: 1biz.kz
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: biz-web
+              servicePort: 80

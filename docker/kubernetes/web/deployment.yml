@@ -1,0 +1,67 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: 1biz-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: 1biz-web
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: 1biz-web
+          image: "registry.gitlab.com/sassoftinc/1biz:latest"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: 1biz-http
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+            - name: DB_HOST
+              value: "139.59.145.217"
+            - name: DB_NAME
+              value: "1biz_db"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: 1biz-secrets
+                  key: db_password
+            - name: SENDGRID_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: 1biz-secrets
+                  key: sendgrid_api_key
+            - name: STATSD_HOST
+              value: "monitoring.sassoft.ru"
+            - name: STATSD_PORT
+              value: "8125"
+            - name: STATSD_NAMESPACE
+              value: "1biz"
+            - name: STORAGE_REGION
+              value: "ams3"
+            - name: STORAGE_STRATEGY
+              value: "do"
+            - name: STORAGE_ENDPOINT
+              value: "https://ams3.digitaloceanspaces.com"
+            - name: STORAGE_BUCKET
+              value: "sassoft"
+            - name: STORAGE_PATH
+              value: "1biz/"
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: 1biz-secrets
+                  key: aws_secret_access_key
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: 1biz-secrets
+                  key: aws_access_key_id
+            - name: STORAGE_PUBLIC_URL
+              value: "https://sassoft.ams3.digitaloceanspaces.com/1biz"
