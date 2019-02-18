@@ -22,9 +22,9 @@ spec:
             - name: ENVIRONMENT
               value: "production"
             - name: DB_HOST
-              value: "139.59.145.217"
+              value: "46.101.157.78"
             - name: DB_NAME
-              value: "1biz_db"
+              value: "1biz"
             - name: DB_USER
               value: "root"
             - name: DB_PASSWORD
