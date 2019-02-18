@@ -1,5 +1,5 @@
 # Production ready web dockerfile
-FROM registry.gitlab.com/sassoftinc/cping/common:v1
+FROM registry.gitlab.com/sassoftinc/cping/common:latest
 
 # Replace configuration files
 COPY ./docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
